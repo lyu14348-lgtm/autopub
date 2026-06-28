@@ -1,0 +1,2349 @@
+
+
+===== PAGE 1 / 31 =====
+AutoPub PRD 3.2 | Vercel + Supabase + Creem 基础设施明确版
+AutoPub PRD 3.2
+插件矩阵 + SEO/GEO SaaS 总交付文档
+产品 PRD / 技术文档 / 开发计划 / 运营计划 / QA 验收 / 上架合规
+文档版本
+V3.2
+项目名称
+AutoPub
+当前阶段
+第一阶段：Chrome 插件矩阵完成上线，并打通 Creem 
+真实支付收款闭环；SaaS 仅展示与收邮箱
+第二阶段
+SEO/GEO SaaS 正式交付
+适用对象
+产品、研发、前端、后端、AI、测试、设计、运营、增
+长、商务、上架
+生成日期
+2026-06-25
+
+
+
+===== PAGE 2 / 31 =====
+AutoPub PRD 3.2 | Vercel + Supabase + Creem 基础设施明确版
+0. 文档使用说明
+本文件是一份跨部门交付文档，目的不是只描述产品想法，而是让不同岗位可以直接进入执行。产品负责
+人可以看产品范围，开发可以看技术架构和 API，运营可以看增长计划，测试可以看验收标准，上架负责人
+可以看 Chrome Store 清单。
+部门/角色
+重点阅读章节
+应该产出的结果
+创始人/负责人
+1-5、11-12、20、26-28
+确认方向、范围、收费、优先级和交
+付标准
+产品经理
+3-13、20、26
+拆需求、写任务、控制 V1/V2 边界
+前端/插件开发
+5-10、14-19、20-22
+完成 4 个插件、官网页面和插件交互
+后端开发
+12、14、16-18
+完成账号、Credits、AI、Waitlist、
+日志和 API
+AI 工程
+6-9、11、18
+完成图片、视频、SEO、竞品 AI 能
+力封装
+测试 QA
+22、26、27
+执行测试、复现 BUG、验收 P0/P1 
+清零
+运营/增长
+10、23-25
+准备冷启动、内容、种子用户和渠道
+投放
+设计/UI
+6-10、13、19
+统一插件和官网视觉，完成截图与页
+面设计
+上架/合规
+19、23、26
+准备 Chrome Store 文案、隐私政策
+和权限说明
+1. 项目总览
+1.1 项目定位
+AutoPub 是面向海外市场的 AI 工具产品矩阵。第一阶段以 Chrome 插件矩阵为主，帮助用户完成网页图片
+采集、AI 图片分析、视频创意拆解、SEO 页面诊断、竞品页面变化监控。第二阶段开发完整 SEO/GEO 
+SaaS，承接插件用户和 Waitlist 用户，形成更高客单价的自动化增长平台。
+1.2 当前阶段一句话定义
+当前阶段的主交付物是 4 个可上线、可真实收款、可打包的 Chrome 插件；插件上线时必须打通 Creem 真
+实支付闭环，用户可以完成付款，系统可以识别 Pro / Pro Plus / Credits 状态；SEO/GEO SaaS 当前只做
+官网展示、Coming Soon、Notify Me 和 Waitlist 邮箱收集。
+1.3 最终产品路线
+阶段
+主交付物
+目标
+不做内容
+V1.0
+插件矩阵 + 官网 Waitlist + 
+Creem 支付闭环
+4 个插件完成上线，用户可
+真实支付，开始获客和收
+费验证
+不做完整 SEO/GEO SaaS 
+后台
+V1.1
+插件优化 + Credits + 收费
+优化稳定性、AI 成本、升
+级入口、定价策略
+不扩展过多新插件
+V2.0
+SEO/GEO SaaS 正式版
+网站项目、诊断、报告、
+内容生成、订阅收费
+不做黑帽 SEO、不做未授
+权采集
+V3.0
+增长自动化平台
+插件 + SaaS + Agent API + 
+Agency 版本
+不做违背平台规则的自动
+化
+
+
+
+===== PAGE 3 / 31 =====
+AutoPub PRD 3.2 | Vercel + Supabase + Creem 基础设施明确版
+2. 产品战略
+2.1 为什么先做插件矩阵
+
+Chrome 插件比完整 SaaS 更轻，可以更快上线并获得真实用户反馈。
+
+插件天然贴近浏览器工作流，用户看到问题时可以立刻使用。
+
+多个插件对应多个获客入口：视觉素材、视频创意、SEO、竞品监控。
+
+插件可以先验证 AI Credits 和 Pro 付费点，第一阶段必须通过 Creem 打通真实收款闭环，降低 SaaS 开发前
+的不确定性。
+
+插件用户和 Waitlist 邮箱可以沉淀到统一账号体系，为第二阶段 SaaS 导流。
+2.2 为什么 SEO/GEO SaaS 放第二阶段
+完整 SEO/GEO SaaS 涉及网站项目、整站抓取、SEO 规则、GEO 分析、内容生成、报告系统、订阅付费和
+客户后台。如果第一阶段同时开发完整 SaaS，会显著增加周期、成本和失败风险。因此第一阶段只做展示
+和收邮箱，第二阶段再完成 SaaS 主体。
+2.3 当前版本的核心判断
+问题
+结论
+当前做一个插件还是多个插件？
+做插件矩阵。多个插件都要达到 V1 可上线状态。
+SEO/GEO SaaS 是否现在完整开发？
+不完整开发。当前只展示、预告、收邮箱。
+哪个插件优先级最高？
+Visual 和 SEO Audit 优先，因为一个负责广泛获客，一
+个连接第二阶段 SaaS。
+收费从哪里来？
+AI 分析、AI 生成、深度报告、高频监控、Credits、
+Pro/Pro Plus；第一阶段通过 Creem 真实收款。
+当前最重要的交付标准？
+插件可安装、可运行、可打包、可上架、可真实支付、
+有测试报告。
+3. 阶段规划与范围边界
+3.1 第一阶段必须完成
+#
+检查项
+状态
+1
+Visual Saver & AI Analyzer 插件可安
+装、可运行、可打包
+待确认
+2
+Video Creative Analyzer 插件可安
+装、可运行、可打包
+待确认
+3
+SEO Page / Site Audit Analyzer 插
+件可安装、可运行、可打包
+待确认
+4
+Competitor Monitor 插件可安装、
+可运行、可打包
+待确认
+5
+统一账号、匿名用户、Credits、AI 
+Provider、日志、Upgrade 入口
+待确认
+6
+官网首页、插件矩阵页、插件详情
+页、Pricing、FAQ、Blog 模板
+待确认
+
+
+
+===== PAGE 4 / 31 =====
+AutoPub PRD 3.2 | Vercel + Supabase + Creem 基础设施明确版
+7
+SEO/GEO SaaS Coming Soon 页、
+Waitlist、Notify Me、Thank You 页
+待确认
+8
+Privacy Policy、Terms、Support 
+页面
+待确认
+9
+Chrome Store listing 文案、截图清
+单、版本说明、上架 Checklist
+待确认
+10
+Creem 真实支付闭环：Checkout、
+Webhook、订阅状态同步、Credits 
+发放、插件内权限解锁
+待确认
+11
+QA 报告、BUG 报告，P0/P1 BUG 
+清零
+待确认
+3.2 第一阶段明确不做
+
+不做完整 SEO/GEO SaaS 后台。
+
+不做自动修改客户网站源码。
+
+不做 WordPress 自动发布。
+
+不做复杂团队协作系统。
+
+不做大型 BI 数据看板。
+
+不做绕过平台限制的视频下载或未授权采集。
+
+不做黑帽 SEO、外链自动建设等高风险能力。
+3.3 第二阶段必须说清楚但不在第一阶段开发
+第二阶段 SEO/GEO SaaS 的功能必须在 PRD 中完整定义，原因是第一阶段需要预留 user_id、
+project_id、site_url、audit_task_id、report_id、credits、plugin_source、waitlist_source 等基础数
+据和接口。如果不提前定义，后续会出现重构。
+4. 用户画像与核心场景
+用户类型
+核心痛点
+主要使用插件
+付费可能性
+独立站卖家
+需要保存竞品素材、检查
+页面 SEO、监控竞品变化
+Visual / SEO / Competitor
+中高
+内容创作者
+想拆解爆款视频、提取脚
+本结构、保存灵感素材
+Video / Visual
+中
+SEO 从业者
+需要快速检查页面问题并
+输出建议
+SEO / Competitor
+高
+Agency
+需要批量服务客户，输出
+报告和监控变化
+SEO / Competitor / SaaS
+高
+SaaS 创业团队
+需要 SEO/GEO 增长和竞品
+变化监控
+SEO / Competitor / SaaS
+中高
+设计师/AI 绘图用户
+想保存图、反推 prompt、
+生成相似风格图
+Visual
+中
+5. 插件矩阵总览
+插件
+一句话定位
+V1 核心价值
+主要收费点
+和 SaaS 关系
+Visual Saver & AI 
+网页图片采集与 AI 
+快速扫描、选择、下
+AI prompt、生图、
+负责广泛获客，沉淀 
+
+
+
+===== PAGE 5 / 31 =====
+AutoPub PRD 3.2 | Vercel + Supabase + Creem 基础设施明确版
+Analyzer
+图片分析插件
+载图片，并反推 
+Prompt / 生图
+风格替换、Credits
+AI 用户
+Video Creative 
+Analyzer
+视频创意与爆款原因
+分析插件
+分析 Hook、节奏、
+卖点、CTA 和脚本结
+构
+深度分析、脚本改
+写、批量分析
+吸引营销和内容团队
+SEO Page / Site 
+Audit Analyzer
+单页 SEO 快速诊断
+插件
+检查 Title、
+Description、H 标
+签、Alt、Schema 
+等
+AI 修复建议、报告导
+出
+第二阶段 SaaS 的核
+心入口
+Competitor 
+Monitor
+竞品页面变化监控插
+件
+记录竞品标题、价
+格、内容、CTA 变化
+更多监控 URL、高频
+监控、AI 总结
+为 SaaS 竞品分析模
+块导流
+6. 插件一：Visual Saver & AI Analyzer
+产品定位
+网页图片采集、批量下载、AI 图片分析与 AI 生图工具。
+目标用户
+
+设计师
+
+独立站卖家
+
+内容创作者
+
+社媒运营人员
+
+跨境电商团队
+
+AI 绘图用户
+
+Pinterest / Instagram / Shopify 运营人员
+核心使用场景
+用户浏览网页时看到一批图片素材，希望快速保存，并进一步用 AI 分析图片风格、反推 prompt 或生成类
+似风格图片。
+V1 必做功能
+功能模块
+说明
+图片扫描
+识别 img、srcset、lazy loading、CSS background-
+image、去重后的图片列表。
+图片展示
+展示缩略图、尺寸、格式、来源 URL、选择状态、下载
+状态。
+下载能力
+支持单张、多选、全选、批量下载、进度展示、失败提
+示，免费用户单次最多 200 张。
+AI Prompt
+选中图片后反推英文 prompt、关键词、风格描述，并
+支持复制。
+AI 生图
+用户输入 prompt，生成图片、下载结果、扣除 
+Credits。
+产品图风格替换
+用户上传产品图，输入目标风格，生成相似风格图。
+
+
+
+===== PAGE 6 / 31 =====
+AutoPub PRD 3.2 | Vercel + Supabase + Creem 基础设施明确版
+免费功能
+
+扫描网页图片
+
+单张下载
+
+批量下载单次最多 200 张
+
+基础图片信息展示
+收费功能
+
+图片反推 prompt
+
+AI 生图
+
+产品图风格替换
+
+更快生成速度
+
+更高 Credits
+
+历史记录保存
+验收标准
+#
+检查项
+状态
+1
+插件可以本地安装
+待确认
+2
+popup 可以打开
+待确认
+3
+可以扫描并展示图片列表
+待确认
+4
+可以单张和批量下载
+待确认
+5
+超过 200 张时有限制提示
+待确认
+6
+AI prompt / mock 可用
+待确认
+7
+Credits 限制可用
+待确认
+8
+可打包 zip
+待确认
+9
+无 P0/P1 BUG
+待确认
+7. 插件二：Video Creative Analyzer
+产品定位
+公开视频创意分析、爆款原因拆解、脚本结构总结工具。
+目标用户
+
+TikTok 运营
+
+YouTube Shorts 创作者
+
+Instagram Reels 创作者
+
+跨境电商运营
+
+内容营销人员
+
+广告投放人员
+
+Agency
+核心使用场景
+用户看到公开视频或拥有授权视频，希望快速理解它为什么可能爆、开头怎么吸引人、卖点如何表达、
+CTA 如何设计。
+
+
+
+===== PAGE 7 / 31 =====
+AutoPub PRD 3.2 | Vercel + Supabase + Creem 基础设施明确版
+V1 必做功能
+功能模块
+说明
+视频识别
+识别 video 标签、og:video 元信息、页面公开视频链
+接、手动粘贴视频链接、授权上传视频。
+基础信息
+展示标题、来源 URL、时长、缩略图、页面来源，能获
+取则显示。
+AI 创意分析
+输出 Hook、结构、前三秒吸引力、节奏、卖点、情绪触
+发点、CTA、可能爆的原因。
+脚本复用
+生成可复用脚本结构和可改写脚本建议。
+结果操作
+复制分析结果、导出文本、历史记录 V1 可先本地保存。
+免费功能
+
+手动提交视频链接
+
+基础视频识别
+
+每日少量 AI 分析
+收费功能
+
+更多 AI 分析次数
+
+深度创意分析
+
+脚本重写
+
+批量分析 V2
+
+历史记录 V2
+V1 明确不做
+
+不绕过平台限制下载视频
+
+不分析私密内容
+
+不抓取付费内容
+
+不做大规模批量处理
+验收标准
+#
+检查项
+状态
+1
+插件可以本地安装
+待确认
+2
+可以识别公开视频或输入链接
+待确认
+3
+可以发起 AI 分析
+待确认
+4
+输出 Hook、结构、卖点、CTA
+待确认
+5
+可以复制结果
+待确认
+6
+Credits 可以扣除
+待确认
+7
+可打包 zip
+待确认
+8
+无 P0/P1 BUG
+待确认
+8. 插件三：SEO Page / Site Audit Analyzer
+产品定位
+当前网页 SEO 快速诊断与 AI 修复建议插件。
+
+
+
+===== PAGE 8 / 31 =====
+AutoPub PRD 3.2 | Vercel + Supabase + Creem 基础设施明确版
+目标用户
+
+SEO 从业者
+
+独立站卖家
+
+SaaS 创业者
+
+内容运营
+
+本地商家
+
+Web 开发者
+
+Agency
+核心使用场景
+用户打开一个网页后，希望立刻知道它的 SEO 基础问题在哪里，并获得可执行修复建议。
+V1 必做功能
+功能模块
+说明
+基础检查
+检查 Title、Description、H1/H2/H3、图片 alt、
+Canonical、robots meta、链接数量、Open Graph、
+结构化数据。
+评分与问题
+输出 SEO 基础评分、问题数量、严重程度、建议优化
+项。
+AI 修复建议
+输出 Title、Description、H 标签、Alt、FAQ、
+Schema、内容补强建议。
+报告操作
+支持复制报告、导出 Markdown、PDF 导出 V1 可选，
+并引导加入完整 SaaS Waitlist。
+免费功能
+
+当前页面基础 SEO 检查
+
+基础评分
+
+基础问题列表
+收费功能
+
+AI 修复建议
+
+完整报告导出
+
+历史记录
+
+多页面扫描 V2
+
+完整 SaaS 网站诊断第二阶段
+验收标准
+#
+检查项
+状态
+1
+插件可以本地安装
+待确认
+2
+可以扫描当前页面 SEO 信息
+待确认
+3
+输出评分和问题列表
+待确认
+4
+AI 修复建议 / mock 可用
+待确认
+5
+可以复制报告
+待确认
+6
+有 Upgrade 入口
+待确认
+7
+可打包 zip
+待确认
+8
+无 P0/P1 BUG
+待确认
+
+
+
+===== PAGE 9 / 31 =====
+AutoPub PRD 3.2 | Vercel + Supabase + Creem 基础设施明确版
+9. 插件四：Competitor Monitor
+产品定位
+竞品页面变化记录、对比与 AI 总结插件。
+目标用户
+
+独立站卖家
+
+SaaS 团队
+
+SEO 从业者
+
+竞品分析人员
+
+产品经理
+
+Agency
+
+市场营销团队
+核心使用场景
+用户想知道竞争对手网页有没有改变，例如标题、价格、主要内容、CTA、关键词或页面结构。
+V1 必做功能
+功能模块
+说明
+添加 URL
+添加当前页面或手动输入 URL，支持备注和监控类型。
+页面快照
+记录标题、Description、H1、主要文本摘要、价格文
+本、CTA、抓取时间。
+变化对比
+对比标题、描述、H1、主要内容、价格、CTA、关键词
+变化。
+AI 总结
+总结发生了什么变化、可能意味着什么、对方可能在优
+化什么、我方如何应对。
+通知预留
+V1 插件内提示和手动检查，V2 邮箱通知、定时监控、高
+频监控。
+免费功能
+
+少量 URL 监控
+
+手动检查
+
+基础变化记录
+收费功能
+
+更多监控 URL
+
+高频检查
+
+AI 变化总结
+
+邮箱通知
+
+历史记录保留
+
+团队共享 V2
+
+
+
+===== PAGE 10 / 31 =====
+AutoPub PRD 3.2 | Vercel + Supabase + Creem 基础设施明确版
+验收标准
+#
+检查项
+状态
+1
+插件可以本地安装
+待确认
+2
+可以添加 URL
+待确认
+3
+可以保存页面快照
+待确认
+4
+可以对比变化
+待确认
+5
+可以 AI 总结变化
+待确认
+6
+有 Upgrade 入口
+待确认
+7
+可打包 zip
+待确认
+8
+无 P0/P1 BUG
+待确认
+10. 官网与 Waitlist 规划
+10.1 官网定位
+官网是 AutoPub 的品牌承接中心。第一阶段官网不做完整 SaaS 后台，只负责品牌展示、插件矩阵介绍、
+插件安装入口、Pricing 展示、SEO/GEO SaaS Coming Soon、Waitlist 邮箱收集、Notify Me 通知订阅、
+Blog、FAQ、Privacy、Terms 和 Support。
+10.2 页面清单
+页面
+目的
+V1 要求
+首页
+建立品牌和产品定位
+清楚表达 AutoPub 是插件矩阵 + 未
+来 SEO/GEO SaaS
+插件矩阵页
+展示 4 个插件
+每个插件有功能、用户、收费点、安
+装入口
+Visual 详情页
+转化图片/AI 用户
+展示扫描、下载、AI prompt、生图
+和风格替换
+Video 详情页
+转化内容/营销用户
+展示 Hook、脚本、爆款分析
+SEO Audit 详情页
+转化 SEO 用户
+展示单页检查和完整 SaaS Waitlist 
+引导
+Competitor 详情页
+转化竞品监控用户
+展示变化监控和 AI 总结
+SEO/GEO Coming Soon
+收集 SaaS 潜在用户
+说明第二阶段 SaaS 能做什么，收邮
+箱
+Pricing
+展示 Free / Pro / Pro Plus
+第一阶段可先展示和预留支付
+Waitlist
+收集邮箱
+记录来源、兴趣功能、用户类型
+Thank You
+完成提交后的引导
+推荐安装插件、关注 X、加入内测
+Blog 列表和详情
+SEO 内容入口
+先做模板，后续填内容
+FAQ
+降低用户疑虑
+解释插件、AI、Credits、隐私、
+SaaS 预告
+Privacy / Terms / Support
+上架和信任基础
+必须可访问，支持 Chrome Store 审
+核
+10.3 Waitlist 字段
+字段
+说明
+是否必填
+email
+用户邮箱
+必填
+source_page
+提交来源页面
+自动记录
+source_plugin
+来源插件
+自动记录
+
+
+
+===== PAGE 11 / 31 =====
+AutoPub PRD 3.2 | Vercel + Supabase + Creem 基础设施明确版
+interested_feature
+感兴趣功能
+选填
+user_type
+用户类型
+选填
+country
+国家/地区，能识别则记录
+自动/选填
+created_at
+提交时间
+自动
+11. 第二阶段 SEO/GEO SaaS 规划
+11.1 阶段定位
+SEO/GEO SaaS 是 AutoPub 第二阶段核心产品。第一阶段只做展示和 Waitlist，第二阶段正式开发完整 
+SaaS，用于承接插件用户并转化为更高客单价用户。
+11.2 第二阶段目标
+
+网站 SEO 诊断：发现页面和整站 SEO 基础问题。
+
+GEO 可见性分析：判断网站是否容易被 AI 搜索和 AI 回答系统理解、引用和推荐。
+
+关键词机会挖掘：输出核心词、长尾词、本地词、问答词、对比词和购买意图词。
+
+竞品分析：对比竞争对手页面结构、内容、关键词和 GEO 友好程度。
+
+SEO/GEO 内容生成：生成博客、FAQ、服务页、产品页、对比文章和本地 SEO 页面。
+
+报告系统：生成可导出或可分享的 SEO/GEO 报告。
+11.3 用户输入与系统输出
+输入项
+说明
+网站 URL
+用户要诊断的网站或页面
+目标国家/地区
+用于本地 SEO 和内容语境
+目标语言
+用于内容生成和报告语言
+行业
+用于关键词和竞品逻辑
+品牌名称与业务介绍
+用于 GEO 实体识别和内容生成
+产品/服务说明
+用于生成服务页、FAQ、内容策略
+目标关键词
+用于诊断和扩展机会词
+竞争对手 URL
+用于对比分析和内容差距
+内容风格偏好
+用于生成符合品牌风格的内容
+输出项
+说明
+SEO 诊断报告
+标题、描述、H 标签、Alt、Canonical、结构化数据、
+索引等检查结果
+GEO 诊断报告
+AI 搜索可理解、可引用、可信结构、FAQ 和实体信息分
+析
+关键词机会
+核心词、长尾词、本地词、问答词、痛点词、购买意图
+词
+页面修复建议
+Title、Description、H 标签、Alt、内链、FAQ、
+Schema 建议
+内容选题
+博客、FAQ、对比文、How-to、本地页面选题
+SEO/GEO 内容草稿
+文章、服务页、产品页、AI 搜索友好摘要
+竞品对比报告
+竞品内容、关键词、页面结构和 GEO 友好度差距
+每周优化报告
+持续跟踪项目的变化和下一步行动
+
+
+
+===== PAGE 12 / 31 =====
+AutoPub PRD 3.2 | Vercel + Supabase + Creem 基础设施明确版
+11.4 SaaS 核心模块
+模块
+功能范围
+第二阶段验收标准
+网站项目管理
+创建网站项目、目标国家、语言、行
+业、关键词、竞品
+用户可以创建/编辑/查看项目
+SEO 诊断
+Title、Description、H 标签、Alt、
+Canonical、robots、sitemap、
+Schema
+系统能生成 SEO 问题清单和评分
+GEO 诊断
+品牌实体、FAQ、事实型内容、
+schema、可信信息、AI 搜索友好结
+构
+系统能输出 GEO 可见性评分和建议
+关键词机会
+核心词、长尾词、本地词、问答词、
+对比词、购买意图词
+系统能生成可执行关键词列表
+内容生成
+博客、FAQ、服务页、产品页、对比
+文章、本地 SEO 页面
+系统能生成草稿并消耗 Credits
+竞品分析
+竞品标题、结构、关键词、内容长
+度、FAQ、差距分析
+系统能输出竞品对比报告
+报告系统
+SEO 分、GEO 分、问题、建议、关
+键词、内容计划、竞品差距
+报告可导出或分享
+订阅和 Credits
+诊断、AI 分析、内容生成、报告导
+出消耗 Credits
+Credits 可扣除，订阅状态可识别
+11.5 第一阶段需要为第二阶段预留
+
+user_id
+
+project_id
+
+site_url
+
+audit_task_id
+
+ai_task_id
+
+report_id
+
+plugin_source
+
+waitlist_source
+
+credits_balance
+
+subscription_plan
+
+usage_logs
+
+email
+
+created_at
+
+updated_at
+11.6 插件与 SaaS 联动
+插件
+导向 SaaS 的方式
+SEO Audit 插件
+单页扫描后提示生成完整网站级 SEO/GEO 报告，加入 
+Waitlist 或创建 SaaS 项目。
+Competitor Monitor 插件
+发现竞品变化后提示创建长期竞品监控项目。
+Visual 插件
+用 AI 图片能力吸引设计、电商、内容用户进入账号体系
+和 Credits 体系。
+Video 插件
+吸引营销和内容团队，后续导向内容策略、落地页和 
+GEO 内容生成。
+
+
+
+===== PAGE 13 / 31 =====
+AutoPub PRD 3.2 | Vercel + Supabase + Creem 基础设施明确版
+12. 收费体系与 Credits 设计
+套餐
+适用用户
+包含能力
+第一阶段实现方式
+Free
+新用户和轻度用户
+基础扫描、下载、少量 AI 
+Credits、少量监控、基础 
+SEO 检查
+必须实现
+Pro
+个人用户和重度创作者
+更多 AI Credits、更快生
+成、AI 分析、更多导出、
+更多监控
+必须接入 Creem 真实订
+阅/支付
+Pro Plus
+重度用户和小团队
+更高 Credits、更高频监
+控、更深度 AI 分析、更多
+项目/报告
+必须接入 Creem 真实订
+阅/支付
+Agency
+后续代理商版本
+多客户、团队成员、白标
+报告、批量诊断、API
+第二阶段后期评估
+12.1 Credits 消耗场景
+
+图片反推 prompt
+
+AI 生图
+
+产品图风格替换
+
+视频创意分析
+
+SEO AI 修复建议
+
+竞品变化总结
+
+SaaS 网站诊断
+
+SaaS GEO 分析
+
+SaaS 内容生成
+
+SaaS 报告生成
+12.2 第一阶段支付策略：Creem 真实支付闭环
+第一阶段插件上线时必须能够真实收款，不能只做支付 mock。支付渠道统一使用 Creem。用户从插件内
+点击 Upgrade 或 Buy Credits 后，进入官网 Pricing / Checkout，完成 Creem 支付；Creem Webhook 回
+调后端，后端更新用户订阅状态或 Credits 余额；插件重新拉取用户权益并解锁 Pro / Pro Plus / Credits 功
+能。
+能力
+第一阶段要求
+是否阻塞上线
+Creem Checkout
+必须创建真实 checkout session 或 
+payment link，用户可以完成付款
+P0 阻塞
+Creem Webhook
+必须接收支付成功、订阅续费、订阅
+取消、退款等事件
+P0 阻塞
+订阅状态同步
+支付成功后 users.plan / 
+subscriptions.status 必须更新
+P0 阻塞
+Credits 发放
+购买 Credits 或订阅成功后必须自动
+发放/刷新额度
+P0 阻塞
+插件内权限解锁
+插件必须能识别 Pro / Pro Plus / 
+Credits 并解锁付费功能
+P0 阻塞
+Customer Portal / 取消订阅
+必须预留入口，用户可管理或取消订
+阅
+P1 阻塞
+Test Mode 测试
+上线前必须用 Creem Test Mode 完
+成成功支付、失败支付、Webhook 
+P0 阻塞
+
+
+
+===== PAGE 14 / 31 =====
+AutoPub PRD 3.2 | Vercel + Supabase + Creem 基础设施明确版
+测试
+Production 切换
+上线前必须换成生产 API Key、生产 
+webhook URL、生产产品价格
+P0 阻塞
+12.3 Creem 支付用户路径
+场景
+用户动作
+系统动作
+成功结果
+订阅 Pro
+插件内点击 Upgrade Pro
+跳转官网 Pricing，创建 
+Creem Checkout
+支付成功后 plan=pro，发
+放 Pro Credits
+订阅 Pro Plus
+插件内点击 Upgrade Pro 
+Plus
+创建对应 Creem 
+Checkout
+支付成功后 
+plan=pro_plus，解锁更高
+额度
+购买 Credits
+用户点击 Buy Credits
+创建一次性 Credits 商品 
+Checkout
+Webhook 成功后 
+credit_logs 增加额度
+订阅续费
+Creem 触发续费事件
+后端延长权益并刷新 
+Credits
+插件显示续费后权益
+取消订阅
+用户在 Customer Portal 
+取消
+Webhook 同步 
+subscription canceled
+到期后降级 Free 或停止 
+Pro 权益
+退款/争议
+Creem 触发退款/争议事件
+后端回收权益或标记风险
+用户权益状态同步
+12.4 Creem 支付技术要求
+
+后端必须保存 creem_customer_id、creem_subscription_id、creem_checkout_id、
+creem_product_id、creem_price_id。
+
+Webhook 必须校验 Creem 签名，不能只信任前端跳转 success_url。
+
+Webhook 事件必须幂等处理，同一个 creem_event_id 不允许重复发放 Credits。
+
+支付成功后的权益更新以 webhook 为准，success_url 只负责用户体验展示。
+
+插件端不得存储 Creem API Key；所有 checkout 创建和 webhook 处理必须在服务端完成。
+
+插件端通过 /api/auth/me 或 /api/entitlements 获取当前 plan、credits_balance 和功能权限。
+
+所有付费功能必须在后端二次校验 Credits / subscription，不允许只在前端隐藏按钮。
+12.5 第一阶段 Creem 支付验收标准
+#
+检查项
+状态
+1
+用户可以从 4 个插件内点击 
+Upgrade 并进入对应 
+Pricing/Checkout
+待确认
+2
+用户可以用 Creem 完成真实支付或
+订阅
+待确认
+3
+Creem 支付成功后后端能收到 
+webhook
+待确认
+4
+Webhook 签名校验通过后更新订阅
+状态
+待确认
+5
+Webhook 能正确发放 Credits 或解
+锁 Pro / Pro Plus
+待确认
+6
+插件刷新后能识别付费权益并允许使
+用付费功能
+待确认
+7
+支付失败、取消支付、余额不足时有
+明确提示
+待确认
+8
+订阅取消后权益能按规则降级
+待确认
+
+
+
+===== PAGE 15 / 31 =====
+AutoPub PRD 3.2 | Vercel + Supabase + Creem 基础设施明确版
+9
+退款/争议事件不会继续保留错误权
+益
+待确认
+10
+测试模式和生产模式配置分离，生产
+密钥不进入前端或插件包
+待确认
+13. 产品页面与用户路径
+路径
+步骤
+Visual 使用路径
+打开网页 -> 点击插件 -> 扫描图片 -> 选择图片 -> 下载 -> 
+点击 AI Prompt -> 消耗 Credits -> 输出 prompt -> 
+Upgrade 引导
+Video 使用路径
+打开视频页或输入链接 -> 识别视频 -> 发起 AI 分析 -> 输
+出 Hook/结构/卖点/CTA -> 复制结果 -> Upgrade 引导
+SEO 使用路径
+打开网页 -> 点击 SEO 插件 -> 扫描页面 -> 输出评分和问
+题 -> 点击 AI 修复建议 -> 加入 SaaS Waitlist
+Competitor 使用路径
+添加竞品 URL -> 保存快照 -> 手动检查变化 -> AI 总结变
+化 -> Upgrade 高频监控
+SaaS Waitlist 路径
+进入官网 -> 查看 Coming Soon -> 输入邮箱 -> 选择感兴
+趣功能 -> Thank You -> 推荐安装插件
+14. 技术架构
+14.1 总体架构
+项目采用 monorepo。4 个 Chrome 插件、官网 web、API 后端、shared packages、AI provider、
+Credits/Billing、Analytics、QA/docs 全部在同一仓库中维护。
+/apps
+  /visual-extension
+  /video-extension
+  /seo-audit-extension
+  /competitor-monitor-extension
+  /web
+  /api
+/packages
+  /shared
+  /ui
+  /auth
+  /billing
+  /credits
+  /ai
+  /analytics
+  /chrome-utils
+  /config
+/docs
+  PRD.md
+
+
+
+===== PAGE 16 / 31 =====
+AutoPub PRD 3.2 | Vercel + Supabase + Creem 基础设施明确版
+  TECH_ARCHITECTURE.md
+  API_SPEC.md
+  DATABASE_SCHEMA.md
+  PLUGIN_MATRIX.md
+  DEVELOPMENT_PLAN.md
+  OPERATION_PLAN.md
+  QA_PLAN.md
+  CHROME_STORE_LISTING.md
+  RELEASE_CHECKLIST.md
+  PRIVACY_POLICY.md
+  TERMS.md
+14.2 技术原则
+
+插件独立构建、独立打包、独立上架。
+
+插件共享账号、Credits、AI、UI、埋点和错误日志。
+
+AI 能力统一封装，不在业务代码中绑定单一模型。
+
+权限最小化，避免 Chrome Store 审核风险。
+
+第二阶段 SaaS 所需字段在第一阶段预留。
+
+所有核心功能必须有失败状态和用户提示。
+14.3 技术栈建议
+层级
+建议技术
+说明
+Chrome 插件
+Manifest V3 + React + TypeScript
+四个插件统一基础结构，独立 
+manifest
+官网
+Next.js / React + Tailwind CSS
+SEO 友好，适合官网、Blog 和 
+Waitlist
+API
+Node.js / TypeScript / Serverless
+便于快速开发和后续扩展
+数据库
+PostgreSQL / Supabase
+适合用户、任务、Credits、日志、
+项目数据
+限流
+Redis / KV
+防止 AI API 滥用
+对象存储
+S3 / R2 / Supabase Storage
+存储用户授权上传图、AI 生成图
+AI Provider
+统一 provider 接口
+先 mock，后接真实模型
+15. 数据库设计
+users
+字段
+id
+email
+name
+anonymous_id
+plan
+credits_balance
+created_at
+updated_at
+
+
+
+===== PAGE 17 / 31 =====
+AutoPub PRD 3.2 | Vercel + Supabase + Creem 基础设施明确版
+waitlist_entries
+字段
+id
+email
+source_page
+source_plugin
+interested_feature
+user_type
+country
+created_at
+ai_tasks
+字段
+id
+user_id
+task_type
+input_type
+input_url
+input_text
+output_text
+output_url
+status
+credits_cost
+error_message
+created_at
+updated_at
+credit_logs
+字段
+id
+user_id
+action_type
+credits_delta
+balance_after
+related_task_id
+created_at
+plugin_usage_logs
+字段
+id
+user_id
+anonymous_id
+plugin_name
+event_name
+event_payload
+created_at
+
+
+
+===== PAGE 18 / 31 =====
+AutoPub PRD 3.2 | Vercel + Supabase + Creem 基础设施明确版
+monitored_urls
+字段
+id
+user_id
+url
+title
+notes
+status
+created_at
+updated_at
+page_snapshots
+字段
+id
+monitored_url_id
+title
+description
+h1
+main_text_hash
+price_text
+cta_text
+snapshot_text
+created_at
+seo_audits
+字段
+id
+user_id
+url
+score
+title_status
+description_status
+h_status
+alt_status
+canonical_status
+structured_data_status
+issues_json
+suggestions_json
+created_at
+saas_projects 第二阶段
+字段
+id
+user_id
+
+
+
+===== PAGE 19 / 31 =====
+AutoPub PRD 3.2 | Vercel + Supabase + Creem 基础设施明确版
+site_url
+project_name
+target_country
+target_language
+industry
+keywords_json
+competitors_json
+created_at
+updated_at
+16. API 设计
+模块
+接口
+用途
+Auth
+POST /api/auth/anonymous
+创建匿名用户
+Auth
+POST /api/auth/login
+登录
+Auth
+GET /api/auth/me
+获取当前用户
+Waitlist
+POST /api/waitlist
+提交邮箱
+Waitlist
+GET /api/waitlist/status
+查询是否已加入
+Credits
+GET /api/credits/balance
+获取 Credits 余额
+Credits
+POST /api/credits/consume
+扣除 Credits
+AI
+POST /api/ai/reverse-prompt
+图片反推 prompt
+AI
+POST /api/ai/generate-image
+根据 prompt 生图
+AI
+POST /api/ai/style-transfer
+产品图风格替换
+AI
+POST /api/ai/video-analysis
+视频创意分析
+AI
+POST /api/ai/seo-suggestion
+SEO 修复建议
+AI
+POST /api/ai/competitor-
+summary
+竞品变化总结
+AI
+GET /api/ai/tasks/:id
+获取任务状态
+SEO
+POST /api/seo/audit-page
+提交页面 SEO 分析结果
+Competitor
+POST /api/competitor/urls
+添加监控 URL
+Competitor
+POST /api/competitor/snapshot
+创建快照
+Competitor
+POST /api/competitor/compare
+对比变化
+Analytics
+POST /api/analytics/event
+记录事件
+Logs
+POST /api/logs/error
+记录错误
+17. AI 能力层设计
+17.1 AI 任务类型
+
+reverse_prompt
+
+generate_image
+
+style_transfer
+
+video_analysis
+
+seo_suggestion
+
+competitor_summary
+
+geo_audit 第二阶段
+
+
+
+===== PAGE 20 / 31 =====
+AutoPub PRD 3.2 | Vercel + Supabase + Creem 基础设施明确版
+
+content_generation 第二阶段
+17.2 AI 调用流程
+1.
+前端发起请求
+2.
+后端识别用户
+3.
+检查 Credits
+4.
+创建 ai_task
+5.
+调用 AI provider
+6.
+写入结果
+7.
+扣除 Credits
+8.
+返回结果
+9.
+记录日志
+17.3 错误处理
+
+模型超时
+
+Credits 不足
+
+输入过大
+
+图片无法读取
+
+视频无法解析
+
+API Key 缺失
+
+Provider 返回异常
+
+任务失败
+
+用户取消请求
+18. Chrome 插件技术要求
+18.1 Manifest 要求
+
+每个插件拥有独立 manifest.json。
+
+使用最小必要 permissions 和 host_permissions。
+
+background 使用 service worker。
+
+content scripts 按需注入，不全站过度注入。
+
+action popup 负责主要用户入口。
+
+icons、description、version 必须完整。
+18.2 权限原则
+
+不申请无关权限。
+
+不读取无关用户数据。
+
+不采集敏感内容。
+
+用户上传图片必须说明处理方式。
+
+不绕过平台限制。
+
+不做未授权抓取。
+
+不假冒平台官方工具。
+
+
+
+===== PAGE 21 / 31 =====
+AutoPub PRD 3.2 | Vercel + Supabase + Creem 基础设施明确版
+18.3 插件一致性
+
+相同品牌视觉。
+
+相同登录入口。
+
+相同 Upgrade 入口。
+
+相同 Credits 展示。
+
+相同错误提示风格。
+
+相同官网跳转风格。
+19. 开发计划
+阶段
+目标
+主要交付物
+验收标准
+阶段 0：项目初始化
+创建 monorepo、docs、
+AGENTS.md、基础规范
+项目结构、README、开
+发规范
+仓库结构清楚，Codex 能
+按规则执行
+阶段 1：共享底座
+shared types、UI、
+auth、credits、AI 
+client、analytics、
+chrome-utils
+packages 可复用
+4 个插件可以调用共用能力
+阶段 2：Visual 插件
+扫描、下载、AI prompt、
+生图、风格替换
+Visual 插件 zip
+可安装、可用、可打包
+阶段 3：SEO Audit 插件
+SEO 扫描、评分、AI 建
+议、报告复制
+SEO 插件 zip
+可安装、可用、可打包
+阶段 4：Video 插件
+视频识别、链接输入、AI 
+创意分析
+Video 插件 zip
+可安装、可用、可打包
+阶段 5：Competitor 插件
+添加 URL、快照、对比、
+AI 总结
+Competitor 插件 zip
+可安装、可用、可打包
+阶段 6：官网/Waitlist
+官网、插件页、Coming 
+Soon、Waitlist、FAQ、
+Blog、Privacy
+可运行官网
+邮箱可提交，页面完整
+阶段 7：QA/上架准备
+测试、修复、打包、上架
+文案、截图清单
+QA 报告、BUG 报告、
+Release Checklist
+P0/P1 清零，可提交上架
+20. Codex 子代理开发分工
+使用 Codex 开发时，建议 1 个主控代理 + 12 个子代理。主控代理负责范围控制、任务分配、合并和验收；
+子代理按模块开发，避免同时改同一核心文件。
+代理
+职责
+主要交付
+主控代理
+Product Owner + Tech Lead + 
+Engineering Manager
+任务拆分、范围控制、合并、验收、
+最终报告
+Monorepo Architecture Agent
+设计 monorepo、共享包、技术架
+构
+TECH_ARCHITECTURE、
+PLUGIN_MATRIX、AGENTS.md
+Visual Extension Agent
+开发 Visual 插件
+可运行插件、测试报告
+Video Extension Agent
+开发 Video 插件
+可运行插件、测试报告
+SEO Audit Extension Agent
+开发 SEO 插件
+可运行插件、测试报告
+Competitor Monitor Extension 
+Agent
+开发 Competitor 插件
+可运行插件、测试报告
+Shared Backend Agent
+账号、Waitlist、日志、API
+后端接口和数据库
+Credits & Billing Agent
+Credits、套餐、Upgrade、支付 
+Credits 体系和定价逻辑
+
+
+
+===== PAGE 22 / 31 =====
+AutoPub PRD 3.2 | Vercel + Supabase + Creem 基础设施明确版
+mock
+Shared AI Agent
+AI provider、mock、任务系统
+AI 接口和错误处理
+Website & Waitlist Agent
+官网和 Waitlist
+官网页面和邮箱提交
+Chrome Store Release Agent
+上架材料、权限、隐私政策
+Listing、截图清单、Release 
+Checklist
+QA & Bug Hunter Agent
+主动测试、复现、验证
+BUG_REPORT、QA_REPORT
+DevOps & Release Agent
+构建、打包、部署、环境变量
+build 脚本、插件 zip、部署说明
+21. QA 测试计划
+21.1 BUG 分级
+等级
+定义
+上线要求
+P0
+插件无法安装、无法打开、核心功能
+不可用、build 失败、页面崩溃
+必须修复
+P1
+批量下载失败、200 张限制失效、AI 
+Credits 失效、Waitlist 提交失败、
+SEO 扫描严重错误
+必须修复
+P2
+个别网页识别不完整、UI 提示不清
+楚、个别导出失败、AI 输出质量一
+般
+尽量修复
+P3
+文案、样式、小体验问题
+可延后
+21.2 每个插件通用测试清单
+#
+检查项
+状态
+1
+本地安装
+待确认
+2
+popup 打开
+待确认
+3
+登录状态
+待确认
+4
+Credits 展示
+待确认
+5
+免费功能
+待确认
+6
+收费入口
+待确认
+7
+AI 功能
+待确认
+8
+错误提示
+待确认
+9
+build
+待确认
+10
+zip 打包
+待确认
+11
+Chrome 权限检查
+待确认
+12
+隐私政策链接
+待确认
+21.3 插件专项测试
+插件
+专项测试
+Visual
+普通 img、srcset、lazy load、background-image、去
+重、单张下载、批量下载、200 张限制、AI prompt、生
+图、风格替换
+Video
+video 标签、og:video、手动链接、授权上传、AI 分
+析、结果复制、Credits 扣除
+SEO Audit
+Title、Description、H 标签、Alt、Canonical、
+robots、OG、Schema、评分、AI 修复建议、报告复制
+
+
+
+===== PAGE 23 / 31 =====
+AutoPub PRD 3.2 | Vercel + Supabase + Creem 基础设施明确版
+Competitor
+添加 URL、保存快照、标题变化、价格变化、CTA 变
+化、AI 总结、历史记录
+22. Chrome Store 上架与合规
+22.1 每个插件上架材料
+#
+检查项
+状态
+1
+插件名称
+待确认
+2
+一句话描述
+待确认
+3
+详细描述
+待确认
+4
+图标
+待确认
+5
+截图
+待确认
+6
+隐私政策链接
+待确认
+7
+Support 邮箱
+待确认
+8
+官网链接
+待确认
+9
+版本说明
+待确认
+10
+权限说明
+待确认
+11
+功能演示素材
+待确认
+12
+FAQ 链接
+待确认
+22.2 文案原则
+
+清楚描述插件功能，不夸大效果。
+
+不承诺绕过平台限制。
+
+不鼓励侵权下载。
+
+不收集无关隐私。
+
+明确 AI 功能可能消耗 Credits。
+
+明确用户上传内容的处理方式。
+
+不使用可能误导用户以为是某平台官方工具的表达。
+22.3 合规边界
+
+不绕过付费墙。
+
+不下载私密内容。
+
+不抓取登录后敏感内容。
+
+不窃取用户数据。
+
+不做未授权平台数据采集。
+
+不假冒平台官方工具。
+
+不诱导用户误解插件来源。
+23. 运营计划
+23.1 第一阶段运营目标
+
+让 4 个插件上线。
+
+
+
+===== PAGE 24 / 31 =====
+AutoPub PRD 3.2 | Vercel + Supabase + Creem 基础设施明确版
+
+获取第一批真实用户。
+
+收集插件反馈和 BUG。
+
+验证 AI 收费点。
+
+为 SEO/GEO SaaS 收集 Waitlist。
+
+建立 AutoPub 品牌。
+23.2 冷启动渠道
+渠道
+动作
+目标
+Chrome Web Store
+关键词、截图、描述优化
+获取自然安装
+X / Twitter
+每日发布开发进度、案例、踩坑
+建立真实独立开发者账号
+Reddit
+在相关社区回答痛点，不硬广
+寻找种子用户
+Indie Hackers
+发布 build in public 进度
+获取早期用户
+Product Hunt
+准备正式发布
+获得集中曝光
+Hacker News
+发布技术型内容和工具介绍
+获取开发者用户
+YouTube Shorts / TikTok
+展示插件使用前后对比
+获取视觉化流量
+LinkedIn
+触达 SEO、Agency、营销人员
+获取 B2B 用户
+SEO Blog
+围绕插件痛点写内容
+长期搜索流量
+23.3 100 个种子用户获取方案
+10. 用 X 发布真实开发进度和插件演示。
+11. 用少量推广贴提高曝光，目标先拿 10-20 个反馈用户。
+12. 在 Reddit 搜索 image downloader、SEO audit、competitor monitor、video hook analysis 等痛点帖
+子。
+13. 给独立站卖家、SEO 从业者、TikTok 运营私信，提供免费 Pro 体验换反馈。
+14. 把每个插件做一个 30 秒演示视频，发到 X、YouTube Shorts、TikTok。
+15. 在官网放 Waitlist 和反馈表单。
+16. 给早期用户提供 lifetime early access 或额外 Credits。
+23.4 Blog 内容计划
+内容标题方向
+服务目标
+Best Chrome extensions for saving images
+Visual 插件获客
+How to reverse engineer image prompts with AI
+AI prompt 获客
+How to analyze viral videos with AI
+Video 插件获客
+SEO audit checklist for small websites
+SEO 插件获客
+How to monitor competitor website changes
+Competitor 插件获客
+What is GEO optimization
+第二阶段 SaaS 预热
+How to make your website visible in AI search
+GEO Waitlist 获客
+Shopify product image workflow with AI
+电商用户获客
+Competitor monitoring guide for indie founders
+SaaS/Indie 用户获客
+SEO vs GEO: what changes in AI search
+品牌教育
+24. 增长指标
+指标类型
+具体指标
+用途
+插件安装
+安装数、激活数、卸载率
+判断插件吸引力和质量
+
+
+
+===== PAGE 25 / 31 =====
+AutoPub PRD 3.2 | Vercel + Supabase + Creem 基础设施明确版
+功能使用
+扫描次数、下载次数、AI 分析次
+数、报告复制次数
+判断核心价值是否成立
+付费信号
+Upgrade 点击率、Credits 消耗、
+Pricing 点击率
+判断商业化潜力
+官网转化
+访问量、Waitlist 提交数、来源渠
+道、Thank You 到插件点击
+判断 SaaS 需求和渠道质量
+留存
+DAU、WAU、重复使用次数
+判断插件是否有持续价值
+质量
+错误率、失败率、P0/P1 数量、用户
+投诉
+判断能否上架和扩量
+25. 最终交付标准
+#
+检查项
+状态
+1
+Visual 插件可安装、可运行、可打包
+待确认
+2
+Video 插件可安装、可运行、可打包
+待确认
+3
+SEO Audit 插件可安装、可运行、可
+打包
+待确认
+4
+Competitor Monitor 插件可安装、
+可运行、可打包
+待确认
+5
+4 个插件都有 Upgrade 入口
+待确认
+6
+4 个插件都能跳转 Creem Checkout 
+完成真实支付
+待确认
+7
+Creem Webhook 能同步订阅状态和 
+Credits
+待确认
+8
+插件能识别付费权益并解锁 Pro / 
+Pro Plus 功能
+待确认
+9
+4 个插件都有 Credits 逻辑
+待确认
+10
+4 个插件都有上架文案
+待确认
+11
+4 个插件都有截图清单
+待确认
+12
+官网可运行
+待确认
+13
+Waitlist 可提交邮箱
+待确认
+14
+SEO/GEO Coming Soon 页面存在
+待确认
+15
+Pricing 页面存在
+待确认
+16
+Privacy 页面存在
+待确认
+17
+Terms 页面存在
+待确认
+18
+BUG_REPORT.md 存在
+待确认
+19
+QA_REPORT.md 存在
+待确认
+20
+RELEASE_CHECKLIST.md 存在
+待确认
+21
+P0 / P1 BUG 清零
+待确认
+22
+所有 build 尽可能通过
+待确认
+23
+Creem Test Mode 支付成功、失
+败、取消、Webhook 复测通过
+待确认
+24
+剩余风险清楚列出
+待确认
+26. 风险与边界
+风险
+影响
+解决方案
+4 个插件同时开发复杂度高
+功能可能粗糙或延期
+先做 V1 MVP，Visual 和 SEO 优先打
+
+
+
+===== PAGE 26 / 31 =====
+AutoPub PRD 3.2 | Vercel + Supabase + Creem 基础设施明确版
+磨
+共享系统耦合过重
+改一个模块影响全部插件
+shared packages 保持轻量，接口稳
+定
+AI 成本失控
+免费用户滥用导致成本上升
+Credits、限流、每日额度、mock 
+优先
+Chrome 审核风险
+上架被拒
+权限最小化，文案合规，隐私政策完
+整
+视频平台边界风险
+涉及未授权下载或抓取
+只分析公开/授权内容，不绕过限制
+竞品监控反爬风险
+抓取失败或不稳定
+V1 先手动检查和轻量快照，避免大
+规模爬虫
+用户不理解 AutoPub 定位
+转化低
+官网统一叙事：插件矩阵 + 未来 
+SEO/GEO SaaS
+27. 后续版本规划
+版本
+目标
+核心内容
+V1.0
+完成 4 个插件、官网和 Creem 收款
+闭环
+插件矩阵上线，真实收款，Waitlist 
+收邮箱
+V1.1
+优化插件和商业化
+修复反馈、优化 Credits、Pricing、
+多语言、AI 成本
+V1.2
+增强插件深度
+SEO 报告、Video 分析、
+Competitor 监控、导出能力
+V2.0
+正式开发 SEO/GEO SaaS
+网站项目、诊断、GEO、关键词、内
+容生成、报告、订阅
+V3.0
+增长自动化平台
+插件矩阵 + SaaS + API + Agent 调用 
++ Agency 套餐
+28. Codex 执行总指令摘要
+给 Codex 的核心原则是：当前阶段主交付物是插件矩阵，不是完整 SaaS。所有插件都要做到可安装、可
+运行、可打包、可上架、可通过 Creem 真实收款。SEO/GEO SaaS 第二阶段完成，第一阶段只做展示、
+Coming Soon、Waitlist 和数据结构预留。
+当前阶段目标：
+1. 完成 4 个 Chrome 插件：Visual、Video、SEO Audit、Competitor Monitor。
+2. 每个插件独立可安装、可运行、可 build、可打包 zip、可上架。
+3. 每个插件具备 Free / Pro / Pro Plus / Credits / Upgrade 入口，并能跳转 Creem Checkout 完成真实支付。
+4. 后端必须实现 Creem Webhook，支付成功后同步订阅状态和 Credits，插件刷新后能解锁权益。
+5. 官网只做展示、插件矩阵介绍、SEO/GEO Coming Soon、Waitlist、Pricing、FAQ、Blog、Privacy、Terms。
+6. 完整 SEO/GEO SaaS 放第二阶段开发，但必须在第一阶段预留 user_id、project_id、site_url、audit_task_id、
+report_id、credits、plugin_source、waitlist_source。
+7. 不允许开发完整 SaaS 后台，不允许无边界扩展。
+8. P0/P1 BUG 必须修复后才算交付。
+
+
+
+===== PAGE 27 / 31 =====
+AutoPub PRD 3.2 | Vercel + Supabase + Creem 基础设施明确版
+29. 结论
+AutoPub 当前阶段不是单插件项目，也不是完整 SaaS 项目。当前阶段是插件矩阵完成并上线，并且插件
+上线即能通过 Creem 完成真实收款；第二阶段是 SEO/GEO SaaS 正式完成并交付；官网当前作用是展示
+品牌、介绍插件、预告 SaaS、收集邮箱和承接用户。第一阶段必须避免范围膨胀，但必须为第二阶段预留
+账号、Credits、AI、Waitlist、项目、报告、任务等基础结构。最终目标是通过插件矩阵获取真实海外用
+户，再用 SEO/GEO SaaS 承接高价值用户，形成可持续收费的 AutoPub 产品矩阵。
+
+
+
+===== PAGE 28 / 31 =====
+AutoPub PRD 3.2 | Vercel + Supabase + Creem 基础设施明确版
+29. 基础设施、部署、注册登录与账号体系说明
+本章为 V3.2 新增内容，用于明确第一阶段必须使用 Vercel、Supabase、Creem 完成可上线基础设施。第
+一阶段插件上线时，不仅要能安装和使用，还必须完成用户注册、登录、Google 登录、真实支付、订阅状
+态同步、Credits 发放和插件内权益识别。
+29.1 基础设施选型
+系统
+用途
+第一阶段必须完成
+Vercel
+部署官网、Pricing、登录页、API 
+Routes / Serverless 接口、Creem 
+回调接口
+生产环境可访问；配置正式域名；配
+置环境变量；支持 Preview 与 
+Production
+Supabase
+PostgreSQL 数据库、Auth 用户系
+统、用户资料、订阅、Credits、AI 
+任务、Waitlist 数据
+创建生产项目；启用 Auth；完成表
+结构；完成 RLS/服务端权限边界；
+完成备份与迁移说明
+Creem
+真实收款、Checkout、订阅、
+Webhook、Customer Portal
+创建正式产品和价格；支付成功能回
+调；订阅状态能同步；付款后插件权
+益能解锁
+Google OAuth
+用户可用 Google 账号注册和登录
+配置 Google OAuth Client；接入 
+Supabase Auth；官网和插件登录链
+路均可使用
+Chrome Extension
+4 个插件端入口
+插件内读取登录状态、Credits、
+Plan；未登录可用免费功能，付费功
+能引导登录和支付
+29.2 Vercel 部署要求
+Vercel 负责第一阶段的官网、登录页、Pricing、Waitlist、API 接口和 Creem Webhook Endpoint。所有
+正式支付、账号和权益判断不能只存在插件本地，必须经过后端验证。
+
+Production 域名建议：autopub.cn 或 app.autopub.cn；API 可使用同域 /api 路由，减少跨域复杂度。
+
+Preview 环境用于开发测试，Production 环境用于 Chrome Store 上线和真实收款。
+
+Vercel 环境变量必须按 Development / Preview / Production 分开配置。
+
+修改 Supabase、Creem、AI 等密钥后，必须重新部署生产环境。
+
+Creem Webhook Endpoint 必须使用 HTTPS 生产地址，例如 /api/creem/webhook。
+环境变量
+放置位置
+是否可暴露到前端
+说明
+NEXT_PUBLIC_SUPABAS
+E_URL
+Vercel
+是
+Supabase 项目 URL，前
+端和插件可读取
+NEXT_PUBLIC_SUPABAS
+E_ANON_KEY
+Vercel
+是
+Supabase anon key，可
+用于前端 Auth；仍需配合 
+RLS
+SUPABASE_SERVICE_RO
+LE_KEY
+Vercel
+否
+仅服务端使用，严禁进入
+插件或前端 bundle
+CREEM_API_KEY
+Vercel
+否
+仅服务端创建 Checkout / 
+查询订单使用
+CREEM_WEBHOOK_SEC
+RET
+Vercel
+否
+仅服务端验证 Creem 
+Webhook 签名使用
+APP_BASE_URL
+Vercel
+可选
+生产站点地址，用于 
+return_url / redirect_url
+EXTENSION_ALLOWED_
+Vercel
+否
+允许的 Chrome Extension 
+
+
+
+===== PAGE 29 / 31 =====
+AutoPub PRD 3.2 | Vercel + Supabase + Creem 基础设施明确版
+ORIGINS
+ID / 来源白名单
+AI_PROVIDER_API_KEY
+Vercel
+否
+AI 模型密钥，严禁暴露给
+插件端
+29.3 Supabase 项目与数据库要求
+Supabase 是第一阶段的用户系统和核心数据存储。插件、官网和后续 SaaS 必须共用同一套用户 ID，避免
+第二阶段重构。
+模块
+要求
+Auth
+启用 email/password 登录；启用 Google OAuth；可选 
+Magic Link；必须支持邮箱验证策略。
+profiles
+每个 auth.users 用户对应一条 profile，用于 plan、
+credits、来源、插件使用状态。
+subscriptions
+存储 Creem customer_id、subscription_id、plan、
+status、current_period_end。
+payments
+记录 Creem checkout_id、order_id、amount、
+currency、status、raw_event_id。
+credit_logs
+记录 Credits 发放、扣除、退款回滚、订阅赠送、AI 消
+耗。
+waitlist_entries
+记录 SaaS Waitlist 邮箱、来源插件、感兴趣功能、用户
+类型。
+ai_tasks
+记录 AI 任务状态、输入、输出、失败原因、Credits 成
+本。
+plugin_usage_logs
+记录插件事件，用于判断真实使用和转化。
+webhook_events
+保存 Creem Webhook 原始事件 ID，防止重复处理。
+29.4 用户注册与登录方式
+第一阶段必须把用户注册、登录、退出、会话刷新、账号与匿名记录合并说清楚并实现。用户未登录时可
+以使用免费功能；使用 AI 高级功能、Pro 功能、支付和跨设备 Credits 时必须登录。
+用户状态
+允许使用
+限制
+引导动作
+未登录匿名用户
+基础扫描、基础下载、少
+量免费体验
+无法跨设备保存；AI 额度
+更低；不能支付解锁权益
+提示注册或 Google 登录
+已注册免费用户
+基础功能、每日免费 AI 额
+度、Waitlist、历史基础记
+录
+高级 AI、深度报告、高频
+监控受限
+引导 Upgrade
+Pro 用户
+更多 AI Credits、深度分
+析、更多监控、导出能力
+受套餐额度限制
+到期前提醒续订
+Pro Plus 用户
+最高额度、更快速度、更
+完整分析能力
+受平台成本和风控限制
+支持 Customer Portal 管
+理订阅
+29.5 Google 账号注册/登录要求
+第一阶段必须支持 Google 账号注册和登录。Google 登录统一接入 Supabase Auth，避免单独维护两套账
+号系统。
+1. 在 Google Cloud 创建 OAuth Client，配置产品名称、授权域名和回调地址。
+2. 在 Supabase Auth Providers 中启用 Google，填入 Client ID 和 Client Secret。
+
+
+
+===== PAGE 30 / 31 =====
+AutoPub PRD 3.2 | Vercel + Supabase + Creem 基础设施明确版
+3. 在 Supabase Redirect URLs 中加入生产登录回调地址、Preview 回调地址和插件登录回调地址。
+4. 用户点击 Continue with Google 后，完成 OAuth 授权，回到 AutoPub 登录回调页。
+5. 后端根据 Supabase user_id 创建或更新 profiles。
+6. 如果用户之前是匿名用户，登录后将 anonymous_id 的使用记录和 waitlist 记录合并到 user_id。
+29.6 插件端登录链路
+V1 推荐采用“网页登录桥接”方案：插件内点击登录或升级时，打开 AutoPub 官网登录页；用户完成邮
+箱或 Google 登录后，官网生成一次性 extension_login_code；插件用 state + code 向后端换取插件会
+话。这样可以降低 Chrome Extension OAuth 兼容风险，并便于统一 Creem 支付。
+步骤
+动作
+验收标准
+1
+插件生成 anonymous_id、state、
+nonce，并打开 /login?
+source=extension
+每次登录都有唯一 state，防止串号
+2
+用户在 Vercel 官网登录页选择邮箱
+登录或 Google 登录
+登录成功后 Supabase 返回有效用户
+会话
+3
+官网调用后端创建 
+extension_login_code
+code 短期有效，只能使用一次
+4
+插件通过轮询或回跳方式拿到 
+code，并向 /api/auth/exchange-
+extension-code 换取插件会话
+插件可拿到 user_id、plan、
+credits_balance
+5
+插件把 token 和用户信息保存在 
+chrome.storage.local
+退出登录时必须清除本地会话
+6
+后续插件请求 API 时携带 token
+后端验证 token 后返回对应权益
+29.7 Creem 支付与账号绑定
+所有付费必须绑定 Supabase user_id。用户未登录时点击 Upgrade，必须先登录，再创建 Creem 
+Checkout。禁止匿名支付后无法识别权益。
+1. 插件点击 Upgrade。
+2. 如果未登录，跳转官网登录页。
+3. 登录后进入 Pricing 页面。
+4. 用户选择 Pro 或 Pro Plus。
+5. 后端调用 Creem 创建 Checkout Session，并传入 user_id、email、plan_id、success_url、
+cancel_url。
+6. 用户完成支付。
+7. Creem Webhook 调用 /api/creem/webhook。
+8. 后端验证 Webhook 签名和事件 ID 幂等性。
+9. 更新 subscriptions / payments / credit_logs / profiles。
+
+
+
+===== PAGE 31 / 31 =====
+AutoPub PRD 3.2 | Vercel + Supabase + Creem 基础设施明确版
+10. 插件刷新 /api/auth/me 或 /api/entitlements 后识别 Pro 权益。
+29.8 注册登录相关 API
+接口
+用途
+P0 验收
+POST /api/auth/anonymous
+创建或绑定匿名用户
+未登录用户可获取 anonymous_id 
+和基础额度
+GET /api/auth/me
+获取当前用户、plan、credits、
+subscription 状态
+插件和官网显示一致
+POST /api/auth/exchange-
+extension-code
+插件登录桥接换取会话
+code 只能用一次，过期失效
+POST /api/auth/logout
+退出登录
+插件本地和服务端会话均清除
+POST /api/billing/create-checkout
+创建 Creem Checkout
+必须登录；返回 checkout_url
+POST /api/creem/webhook
+处理 Creem 支付、订阅、退款、取
+消事件
+签名验证、幂等处理、权益同步
+GET /api/entitlements
+插件查询功能权限
+返回 plan、credits、limits、
+features
+29.9 P0 验收标准新增
+
+Vercel Production 官网可以访问，登录页、Pricing、Waitlist、Webhook Endpoint 均可用。
+
+Supabase email/password 注册和登录可用。
+
+Supabase Google 登录可用，生产环境 redirect URL 正确。
+
+未登录用户可以使用免费功能，但付费功能必须引导登录。
+
+插件登录成功后能识别同一个 Supabase user_id。
+
+Creem 真实支付成功后，Webhook 能更新订阅和 Credits。
+
+插件刷新后能看到 Pro / Pro Plus 权益。
+
+退出登录后，插件不能继续使用付费权益。
+
+退款、取消订阅或支付失败后，系统不能继续错误授权。
+
+SUPABASE_SERVICE_ROLE_KEY、CREEM_API_KEY、CREEM_WEBHOOK_SECRET、
+AI_PROVIDER_API_KEY 不得暴露到插件或前端。

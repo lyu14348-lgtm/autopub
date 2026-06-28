@@ -1,0 +1,613 @@
+
+
+===== PAGE 1 / 10 =====
+《Codex 开发执行指令：Creem 支付闭环版》
+AutoPub Codex 开发执行指令 | Vercel + Supabase + Creem 版
+AutoPub
+《Codex 开发执行指令：Creem 支付闭环版》
+用于指挥 Codex 按插件矩阵战略进行开发、测试、修复、Creem 收款打通与交付
+文档属性
+内容
+版本
+V1.0 / 对应 AutoPub PRD 3.2
+适用阶段
+第一阶段：插件矩阵开发与上架；第二阶段：SEO/GEO SaaS 
+预留
+适用团队
+产品、Codex 开发、前端、后端、AI、QA、运营、上架、合
+规
+核心原则
+插件矩阵必须完成；SEO/GEO SaaS 第二阶段交付；当前 
+SaaS 只做展示与 Waitlist
+目录
+1. 使用方式
+2. 项目总目标
+3. 绝对范围边界
+4. 第一次发送给 Codex 的总控 Prompt
+5. 12 个子代理分工
+6. 阶段化开发流程
+7. AGENTS.md 模板
+8. BUG Loop 与验收标准
+9. 本地运行与交付命令
+10. 最终交付报告模板
+11. 官方参考
+
+
+
+===== PAGE 2 / 10 =====
+《Codex 开发执行指令：Creem 支付闭环版》
+AutoPub Codex 开发执行指令 | Vercel + Supabase + Creem 版
+1. 使用方式
+本文件不是普通说明文档，而是给 Codex 的可执行开发指令。使用时建议先把 PRD 3.2、技术文档和本指令放入项
+目 /docs 目录，然后让 Codex 先读取文档、扫描项目、生成 AGENTS.md，再进入代码开发。
+步骤
+你要做什么
+Codex 应输出什么
+1
+把 PRD 3.2 和本执行指令放进仓库 
+/docs
+确认已读取文档
+2
+启动 Codex，要求它先扫描项目，不允
+许直接写代码
+项目现状报告、V1/V2 范围确认
+3
+要求创建 AGENTS.md
+项目规则、子代理边界、测试要求
+4
+按阶段启动子代理
+每阶段交付物、变更文件、测试记录
+5
+进入 QA Bug Loop
+BUG_REPORT.md、
+QA_REPORT.md、修复记录
+6
+打包交付并验证 Creem 支付闭环
+4 个插件 zip、官网、API、Creem 支付
+验收报告、上架文案、最终报告
+2. 项目总目标
+当前阶段的交付物是插件矩阵，不是完整 SEO/GEO SaaS。完整 SEO/GEO SaaS 放在第二阶段开发。第一阶段插件
+上线时必须能够通过 Creem 完成真实收款，不能只做 Billing mock。
+模块
+当前阶段要求
+是否必须完成
+Visual Saver & AI Analyzer
+图片扫描、批量下载、AI Prompt、AI 
+生图、产品图风格替换
+必须完成
+Video Creative Analyzer
+公开视频识别、AI 创意分析、Hook/节
+奏/卖点/CTA 拆解
+必须完成 V1
+SEO Page / Site Audit Analyzer
+单页 SEO 检查、评分、AI 修复建议、报
+告复制/导出
+必须完成
+Competitor Monitor
+添加 URL、页面快照、变化对比、AI 总
+结、通知预留
+必须完成 V1
+官网 / Waitlist
+品牌页、插件页、Pricing、Coming 
+Soon、邮箱收集
+必须完成
+Creem 支付闭环
+Checkout、Webhook、订阅状态同
+步、Credits 发放、插件权益解锁
+必须完成
+SEO/GEO SaaS
+第二阶段做完整功能；当前只展示和收
+邮箱
+当前不开发完整后台
+3. 绝对范围边界
+Codex 必须遵守以下边界。若 PRD 中存在冲突，以本节为准。
+
+
+
+===== PAGE 3 / 10 =====
+《Codex 开发执行指令：Creem 支付闭环版》
+AutoPub Codex 开发执行指令 | Vercel + Supabase + Creem 版
+允许做
+不允许做
+4 个插件 V1 可上线版本
+把完整 SEO/GEO SaaS 后台作为当前主线开发
+统一账号、Credits、AI、Creem Billing、Analytics
+复杂团队系统、企业多租户后台、大型 BI 看板
+官网展示、Waitlist、Notify Me、Pricing、FAQ、Blog 模板
+自动改客户网站源码、自动接管 WordPress、黑帽 SEO
+Chrome Web Store 上架材料与 zip 打包
+绕过平台限制、抓取私密内容、下载受保护内容
+AI mock provider + 可替换真实 provider 架构
+无额度控制地直接调用真实模型造成成本失控
+4. 
+ 
+第一次发送给Codex 
+ 
+的总控Prompt
+下面这段可以直接复制给 Codex。第一轮只允许它扫描项目、确认范围、生成计划和 AGENTS.md，不允许马上大规
+模写业务代码。
+ 
+你现在是AutoPub 
+ 
+项目的主控开发代理，角色是Product Owner + Tech Lead + Engineering Manager。
+ 
+我已经提供了PRD 3.2
+ 
+、技术文档和开发执行指令。请你严格按照文档执行，不要重新发散需求，不要把项目改成单插件，也不要把完整
+SEO/GEO SaaS 提前开发。
+当前阶段主目标：
+1. 
+ 
+完成4 
+ 
+个Chrome 插件，并达到可本地安装、可运行、可构建、可打包、可上线状态。
+2. 完成官网、插件矩阵页、Pricing、SEO/GEO SaaS Coming Soon、Waitlist、FAQ、Blog 模板、Privacy、Terms
+ 
+，并让Pricing 可以发
+ 
+起Creem Checkout。
+3. 实现统一账号、Credits、AI Provider、Creem Billing、Analytics
+ 
+、错误日志；其中Creem 支付必可用。
+4. 
+ 
+完整SEO/GEO SaaS 放到第二段；前只做展示和箱收集。
+当前阶段必须完成的插件：
+1. Visual Saver & AI Analyzer
+2. Video Creative Analyzer
+3. SEO Page / Site Audit Analyzer
+4. Competitor Monitor
+先做以下工作，不允
+直接
+代
+：
+请
+许
+写业务
+码
+1. 取目全部文件。
+2. 
+ 
+读取/docs 
+ 
+中的PRD 和本执行指令。
+3. 出前目告。
+4. 
+ 
+明确V1 
+ 
+必做范围和V2 延后范。
+5. 
+ 
+识别4 个插件的开发边界。
+6. 
+ 
+设计monorepo 目录结构。
+7. 
+ 
+创建或更新AGENTS.md。
+8. 
+ 
+拆分12 个子代理任务。
+9. 输出第一轮开发计划。
+10. 
+ 
+明确Creem 支付闭环的开发任务、环境变量、Webhook 收准。
+完成以上内容后，等待我确认，再进入代码开发。
+5. 12 个子代理分工
+子代理
+职责
+主要文件范围
+交付物
+主控代理
+范围控制、任务拆分、合并、
+验收
+/docs、根配置
+开发计划、最终报告
+Monorepo Architecture 
+monorepo、共享包、接口边
+/apps、/packages、/docs
+TECH_ARCHITECTURE、
+
+
+
+===== PAGE 4 / 10 =====
+《Codex 开发执行指令：Creem 支付闭环版》
+AutoPub Codex 开发执行指令 | Vercel + Supabase + Creem 版
+子代理
+职责
+主要文件范围
+交付物
+Agent
+界
+PLUGIN_MATRIX
+Visual Extension Agent
+图片扫描、下载、AI 图片功
+能
+/apps/visual-extension
+Visual 插件可运行版
+Video Extension Agent
+视频识别、AI 创意分析
+/apps/video-extension
+Video 插件可运行版
+SEO Audit Extension Agent
+SEO 扫描、评分、AI 建议
+/apps/seo-audit-extension
+SEO 插件可运行版
+Competitor Monitor Agent
+URL 监控、快照、变化对比
+/apps/competitor-monitor-
+extension
+Competitor 插件可运行版
+Shared Backend Agent
+Auth、Waitlist、日志、API
+/apps/api、/packages/auth
+后端接口
+Credits & Billing Agent
+Credits、套餐、Creem 
+Checkout、Webhook、订阅
+状态、升级入口
+/packages/credits、/
+packages/billing、/apps/
+api/billing
+真实支付闭环
+Shared AI Agent
+AI Provider、mock、任务、
+成本控制
+/packages/ai、/apps/api/ai
+AI 统一适配层
+Website & Waitlist Agent
+官网、插件页、SaaS 
+Coming Soon、Waitlist
+/apps/web
+官网可运行版
+Chrome Store Release 
+Agent
+manifest、权限、商店文
+案、截图清单
+/docs、各 extension 
+manifest
+上架材料
+QA & DevOps Agent
+测试、BUG、打包、构建、
+部署说明
+/tests、/docs、脚本
+QA_REPORT、zip 包
+6. 阶段化开发流程
+阶段
+目标
+完成标准
+阶段 0：扫描与规划
+读 PRD、扫描代码、定范围、建 
+AGENTS.md
+输出现状报告、V1/V2 范围、子代理计
+划
+阶段 1：共享底座
+monorepo、shared types、UI、
+Auth、Credits、AI mock、Creem 
+Billing
+共享包可被 4 个插件调用，支付接口可
+用
+阶段 2：Visual 插件
+图片扫描下载 + AI 图片功能
+可安装、可构建、可打包、核心功能可
+用
+阶段 3：SEO 插件
+单页 SEO 检查 + AI 建议
+可安装、可构建、可打包、报告可复制
+阶段 4：Video 插件
+视频识别 + AI 创意分析
+可输入公开视频链接并输出分析结果
+阶段 5：Competitor 插件
+URL 快照 + 变化对比 + AI 总结
+可添加 URL、保存快照、对比变化
+阶段 6：官网、Waitlist 与 Creem 
+Checkout
+官网、Pricing、Coming Soon、邮箱收
+集、Checkout 跳转
+页面可访问、Waitlist 可提交、Creem 
+支付可完成
+阶段 7：QA、支付验收与上架
+BUG Loop、Creem Test Mode、zip 打
+包、上架文案
+P0/P1 清零，支付闭环通过，输出最终
+交付报告
+
+
+
+===== PAGE 5 / 10 =====
+《Codex 开发执行指令：Creem 支付闭环版》
+AutoPub Codex 开发执行指令 | Vercel + Supabase + Creem 版
+7. AGENTS.md 模板
+Codex 必须在项目根目录生成或更新 AGENTS.md。建议内容如下：
+# AutoPub AGENTS.md
+## Project Scope
+AutoPub V1 is a Chrome extension matrix project.
+The complete SEO/GEO SaaS is planned for V2. In V1, the SaaS website is only for brand display, Coming Soon, Pricing, Waitlist, 
+Notify Me, FAQ, Blog template, Privacy, Terms and Support.
+## V1 Required Deliverables
+- Visual Saver & AI Analyzer extension
+- Video Creative Analyzer extension
+- SEO Page / Site Audit Analyzer extension
+- Competitor Monitor extension
+- Web landing site and Waitlist
+- Shared Auth, Credits, AI Provider, Creem Billing, Analytics and error logging
+- Chrome Store release materials for each extension
+## Non-Negotiable Rules
+1. Do not expand V1 into the full SEO/GEO SaaS.
+2. Do not change unrelated files.
+3. Do not rewrite working code without a clear reason.
+4. Each agent must stay within its assigned file scope.
+5. Every feature must include loading, empty and error states.
+6. Every AI action must pass through Credits validation.
+7. Creem API keys and webhook secrets must stay on the server only.
+8. Webhook signature verification and idempotency are mandatory.
+9. Every Chrome extension must use Manifest V3.
+10. No remotely hosted executable logic in extensions.
+11. No unauthorized private content scraping or platform bypassing.
+12. Run lint/test/build and Creem payment tests before reporting completion.
+## Completion Report Required
+Each agent must report:
+- Files changed
+- Feature completed
+- Tests run
+- Bugs found
+- Bugs fixed
+- Remaining risks
+- Next suggested task
+8. BUG Loop 与验收标准
+等级
+定义
+是否阻塞交付
+P0
+插件无法安装、无法打开、核心功能不
+可用、build 失败、页面崩溃
+必须修复
+P1
+批量下载失败、Credits 失效、Waitlist 
+提交失败、SEO 扫描严重错误
+必须修复
+P0-Pay
+Creem Checkout 无法创建、Webhook 
+必须修复
+
+
+
+===== PAGE 6 / 10 =====
+《Codex 开发执行指令：Creem 支付闭环版》
+AutoPub Codex 开发执行指令 | Vercel + Supabase + Creem 版
+等级
+定义
+是否阻塞交付
+无法验证、支付成功后无法解锁权益
+P2
+个别网页识别不完整、UI 提示不清楚、
+部分导出失败
+尽量修复
+P3
+文案、样式、小体验问题
+可延后
+1.
+QA 代理主动测试并记录复现步骤。
+2.
+主控代理把 BUG 分配给对应功能代理。
+3.
+功能代理修复后必须说明修改文件和原因。
+4.
+QA 代理复测同一复现路径。
+5.
+P0/P1 全部清零后才允许打包交付并验证 Creem 支付闭环。
+9. 本地运行与交付命令
+如果项目尚未提供这些命令，Codex 需要补充合理脚本。实际命令以仓库 package.json 为准。
+# 安装依赖
+npm install
+# 代码检查
+npm run lint
+npm run typecheck
+npm run test
+# 构建全部项目
+npm run build
+# 单独构建插件
+npm run build:visual
+npm run build:video
+npm run build:seo
+npm run build:competitor
+# 
+ 
+打包Chrome Extension zip
+npm run package:visual
+npm run package:video
+npm run package:seo
+npm run package:competitor
+# 
+ 
+启动官网和API
+npm run dev:web
+npm run dev:api
+# Creem 支付测试
+npm run test:billing
+npm run test:creem-webhook
+10. 最交付告模板
+# AutoPub V1 Final Delivery Report
+
+
+
+===== PAGE 7 / 10 =====
+《Codex 开发执行指令：Creem 支付闭环版》
+AutoPub Codex 开发执行指令 | Vercel + Supabase + Creem 版
+## 1. Summary
+- Completed modules:
+- Incomplete modules:
+- Main risks:
+## 2. Extension Delivery Status
+| Extension | Installable | Build Passed | Zip Ready | P0/P1 Fixed | Store Materials Ready |
+|---|---|---|---|---|---|
+| Visual | | | | | |
+| Video | | | | | |
+| SEO Audit | | | | | |
+| Competitor Monitor | | | | | |
+## 3. Web / API Status
+- Web landing:
+- Waitlist:
+- Pricing:
+- API:
+- Credits:
+- AI Provider:
+- Creem Checkout:
+- Creem Webhook:
+- Subscription sync:
+- Entitlement unlock:
+## 4. Tests Run
+- Commands:
+- Results:
+- Failed tests:
+- Fixes:
+## 5. Bug Report
+- P0:
+- P1:
+- P2:
+- P3:
+## 6. How to Run Locally
+- Install:
+- Start web:
+- Start API:
+- Load extensions:
+## 7. Next Version Suggestions
+- V1.1:
+- V2 SEO/GEO SaaS:
+12. 官方考
+
+OpenAI Codex Subagents：Codex 支持显式启动专业子代理进行并行探索、分析和实现。
+
+OpenAI Codex AGENTS.md：Codex 会读取 AGENTS.md，以便项目规则在每次任务中保持一致。
+
+Chrome Extensions Manifest V3：当前插件开发和上架应按 Manifest V3 要求设计。
+
+Chrome Web Store Program Policies：上架审核会依据开发者计划政策、权限、隐私和用户体验进行。
+
+
+
+===== PAGE 8 / 10 =====
+《Codex 开发执行指令：Creem 支付闭环版》
+AutoPub Codex 开发执行指令 | Vercel + Supabase + Creem 版
+
+
+
+===== PAGE 9 / 10 =====
+《Codex 开发执行指令：Creem 支付闭环版》
+AutoPub Codex 开发执行指令 | Vercel + Supabase + Creem 版
+附录：Vercel + Supabase + Google 登录 + Creem 支付开发指令
+以下内容为 V3.2 新增开发指令。Codex 必须把基础设施、用户注册登录、Google 登录、Supabase 数据库、
+Vercel 部署和 Creem 真实支付作为第一阶段 P0 任务处理。
+请注意：当前项目第一阶段上线要求再次明确。
+技术栈必须包含：
+1. Vercel：部署官网、Pricing、登录页、API Routes、Creem Webhook。
+2. Supabase：数据库、Auth、用户资料、订阅、Credits、AI 任务、Waitlist。
+3. Google OAuth：用户必须可以用 Google 账号注册和登录。
+4. Creem：第一阶段必须真实收款，不允许只做 mock。
+P0 目标：
+- 用户可以邮箱注册/登录。
+- 用户可以 Google 登录。
+- 插件可以识别登录状态。
+- 未登录用户点击 Upgrade 必须先登录。
+- 登录用户可以创建 Creem Checkout。
+- 支付成功后 Creem Webhook 更新 Supabase。
+- 插件刷新后可以解锁 Pro / Pro Plus / Credits 权益。
+- Vercel Production 环境可以完成完整闭环。
+1. 新增基础设施子代理
+代理
+职责
+交付物
+Infrastructure & Auth Agent
+负责 Vercel、Supabase、Auth、
+Google OAuth、环境变量、登录桥接
+INFRASTRUCTURE.md、
+AUTH_FLOW.md、
+ENVIRONMENT_VARIABLES.md、可
+运行登录流程
+Supabase Schema Agent
+负责数据库表、RLS、migration、
+profiles、subscriptions、credits、
+waitlist
+DATABASE_SCHEMA.md、
+migration SQL、RLS 说明
+Vercel Deployment Agent
+负责 Vercel 项目部署、域名、环境变
+量、Preview/Production 区分
+DEPLOYMENT.md、生产环境检查清
+单
+Auth QA Agent
+专门测试注册、登录、Google 登录、
+退出、会话刷新、插件登录状态
+AUTH_QA_REPORT.md
+2. 必须实现的用户路径
+1. 未登录用户打开插件，可以使用免费功能。
+2. 未登录用户点击 AI 高级功能或 Upgrade，跳转官网登录页。
+3. 用户可以邮箱注册并登录。
+4. 用户可以 Google 登录。
+
+
+
+===== PAGE 10 / 10 =====
+《Codex 开发执行指令：Creem 支付闭环版》
+AutoPub Codex 开发执行指令 | Vercel + Supabase + Creem 版
+5. 登录完成后，插件能识别 user_id、plan、credits_balance。
+6. 用户选择 Pro / Pro Plus 后，后端创建 Creem Checkout。
+7. 支付成功后，Webhook 写入 Supabase。
+8. 插件刷新权益后解锁付费功能。
+9. 用户退出登录后，插件清除本地会话。
+3. 必须创建/补充的文档
+
+docs/INFRASTRUCTURE.md：Vercel + Supabase + Creem 总架构。
+
+docs/AUTH_FLOW.md：邮箱登录、Google 登录、插件登录桥接、退出登录、会话刷新。
+
+docs/ENVIRONMENT_VARIABLES.md：所有环境变量、作用、是否可公开。
+
+docs/SUPABASE_SETUP.md：Supabase 项目、Auth Providers、Redirect URLs、数据库表、RLS。
+
+docs/VERCEL_DEPLOYMENT.md：Vercel 绑定 GitHub、域名、环境变量、Production 部署。
+
+docs/CREEM_PAYMENT_FLOW.md：Checkout、Webhook、订阅、Credits、退款取消处理。
+
+docs/AUTH_QA_REPORT.md：注册登录和插件权益测试报告。
+4. 环境变量硬性要求
+变量
+要求
+NEXT_PUBLIC_SUPABASE_URL
+可公开，前端和插件使用。
+NEXT_PUBLIC_SUPABASE_ANON_KEY
+可公开，但必须依赖 RLS 和后端鉴权。
+SUPABASE_SERVICE_ROLE_KEY
+仅服务端，禁止进入插件和前端。
+CREEM_API_KEY
+仅服务端，禁止进入插件和前端。
+CREEM_WEBHOOK_SECRET
+仅服务端，用于验证 Webhook。
+APP_BASE_URL
+生产官网地址，用于登录回调和支付回跳。
+EXTENSION_ALLOWED_ORIGINS
+允许的 Chrome Extension ID 白名单。
+AI_PROVIDER_API_KEY
+仅服务端，禁止进入插件和前端。
+5. P0 测试要求
+
+邮箱注册成功。
+
+邮箱登录成功。
+
+Google 登录成功。
+
+插件登录桥接成功。
+
+退出登录后付费权限失效。
+
+Vercel Production 环境变量完整。
+
+Creem Checkout 创建成功。
+
+Creem Webhook 签名验证成功。
+
+支付成功后 Supabase subscription 状态正确。
+
+插件刷新后 Pro 权限正确。

@@ -1,0 +1,25 @@
+{
+  "name": "autopub",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "node scripts/lint.mjs",
+    "typecheck": "node scripts/lint.mjs",
+    "test": "node scripts/test.mjs",
+    "build": "node scripts/build-all.mjs",
+    "build:visual": "node scripts/build-all.mjs visual-extension",
+    "build:video": "node scripts/build-all.mjs video-extension",
+    "build:seo": "node scripts/build-all.mjs seo-audit-extension",
+    "build:competitor": "node scripts/build-all.mjs competitor-monitor-extension",
+    "package:visual": "node scripts/package-extension.mjs visual-extension",
+    "package:video": "node scripts/package-extension.mjs video-extension",
+    "package:seo": "node scripts/package-extension.mjs seo-audit-extension",
+    "package:competitor": "node scripts/package-extension.mjs competitor-monitor-extension",
+    "dev:web": "node scripts/dev-web.mjs",
+    "dev:api": "node scripts/dev-api.mjs",
+    "test:billing": "node scripts/test.mjs billing",
+    "test:creem-webhook": "node scripts/test.mjs webhook"
+  }
+}
+

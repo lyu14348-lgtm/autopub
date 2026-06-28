@@ -1,0 +1,19 @@
+﻿<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="styles.css"></head>
+<body>
+<main>
+  <header><strong>Video Creative</strong><button data-open-login="video-extension">Sign In</button><button id="upgrade">Upgrade</button></header>
+  <div data-state="loading" class="state-panel"><div class="spinner"></div><p>Loading...</p></div>
+  <div data-state="empty" class="state-panel"><p class="empty-msg">Paste a public video URL or click Scan Page to detect one.</p></div>
+  <div data-state="error" class="state-panel"><p class="error-msg" id="error-msg"></p><button class="btn-retry" id="btn-retry">Retry</button></div>
+  <div data-state="results" class="state-panel active">
+    <p id="status">Paste a public or authorized video URL, or scan this page.</p>
+    <input id="url" placeholder="https://example.com/video">
+    <div class="actions"><button id="scan">Scan Page</button><button id="analyze">Analyze</button></div>
+    <section id="result" class="panel"></section>
+  </div>
+</main>
+<script src="core.js"></script>
+<script src="popup.js"></script>
+</body>
+</html>

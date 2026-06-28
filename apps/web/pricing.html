@@ -1,0 +1,151 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pricing — AutoPub</title>
+<link rel="stylesheet" href="./styles.css">
+<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<header class="nav">
+  <a href="./index.html" class="nav-brand">
+    <img src="./assets/autopub-logo-mark.svg" alt="" class="nav-logo"><span>AutoPub</span>
+  </a>
+  <nav class="nav-links">
+    <a href="./index.html#features">Extensions</a>
+    <a href="./index.html#how-it-works">How It Works</a>
+    <a href="./pricing.html">Pricing</a>
+    <a href="./index.html#saas">AutoPub SaaS</a>
+    <a href="./faq.html">FAQ</a>
+    <a href="./blog.html">Blog</a>
+  </nav>
+  <a href="./login.html" class="nav-signin">Sign In</a>
+</header>
+<main>
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-hero-copy">
+      <span class="section-eyebrow">Extension Pricing</span>
+      <h1>Start with the plugins. Upgrade when AI saves real time.</h1>
+      <p>Free, Pro, and Pro Plus are for the V1 Chrome extension suite: visual asset capture, video creative analysis, SEO auditing, and competitor monitoring. The V2 auto-publishing SaaS is a separate product with separate pricing.</p>
+      <div class="page-hero-actions">
+        <a href="./register.html" class="btn-primary btn-lg">Create Free Account</a>
+        <a href="./index.html#saas" class="btn-secondary btn-lg">View SaaS Waitlist</a>
+      </div>
+    </div>
+    <div class="page-hero-panel">
+      <h3>What this pricing covers</h3>
+      <ul class="signal-list">
+        <li><span>Chrome extensions</span><strong>4 included</strong></li>
+        <li><span>Free credits</span><strong>3/day</strong></li>
+        <li><span>Paid AI credits</span><strong>500-2,000/mo</strong></li>
+        <li><span>V2 SaaS access</span><strong>Separate</strong></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="plans">
+  <div class="section-header">
+    <span class="section-eyebrow">Pricing</span>
+    <h2>Start free. Upgrade when you need more power.</h2>
+    <p>Every extension plan includes access to all four plugins. The difference is credits, limits, and AI analysis depth.</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="plan-card">
+      <div class="plan-name">Free</div>
+      <div class="plan-price">$0<span>/mo</span></div>
+      <p class="plan-desc">Default when you register. 3 credits/day, basic features on all 4 extensions.</p>
+      <ul class="plan-features">
+        <li>All four extensions</li>
+        <li>3 credits / day (refresh daily)</li>
+        <li>Basic scanning &amp; auditing</li>
+        <li>Single image downloads</li>
+        <li>Monitor up to 3 URLs</li>
+        <li>3 AI actions / day</li>
+      </ul>
+      <a href="./register.html" class="btn-secondary plan-cta">Create Free Account</a>
+    </div>
+    <div class="plan-card featured">
+      <div class="plan-badge">Most Popular</div>
+      <div class="plan-name">Pro</div>
+      <div class="plan-price">$19<span>/mo</span></div>
+      <p class="plan-desc">For active marketers and growth operators.</p>
+      <ul class="plan-features">
+        <li>Everything in Free</li>
+        <li>500 credits / month</li>
+        <li>AI prompt &amp; generation</li>
+        <li>Bulk image downloads</li>
+        <li>Monitor up to 25 URLs</li>
+        <li>100 AI actions / day</li>
+        <li>Report export</li>
+      </ul>
+      <button class="btn-primary plan-cta" type="button" data-plan="pro" onclick="autopubStartCheckout('pro')">Upgrade to Pro</button>
+    </div>
+    <div class="plan-card">
+      <div class="plan-name">Pro Plus</div>
+      <div class="plan-price">$49<span>/mo</span></div>
+      <p class="plan-desc">For teams and agencies.</p>
+      <ul class="plan-features">
+        <li>Everything in Pro</li>
+        <li>2,000 credits / month</li>
+        <li>Deep analysis mode</li>
+        <li>Batch up to 5,000 images</li>
+        <li>Monitor up to 100 URLs</li>
+        <li>500 AI actions / day</li>
+        <li>Priority support</li>
+      </ul>
+      <button class="btn-primary plan-cta" type="button" data-plan="pro_plus" onclick="autopubStartCheckout('pro_plus')">Upgrade to Pro Plus</button>
+    </div>
+  </div>
+  <p class="pricing-note" id="checkout-status"></p>
+</section>
+
+<div class="notice-card">
+  <div class="notice-card-inner">
+    <div class="notice-icon">i</div>
+    <div>
+      <strong>Pro Plus does not include the AutoPub SaaS.</strong>
+      <p>The extension plans unlock V1 plugin features only. Automated article planning, image creation, publishing, and ongoing site optimization belong to the V2 SaaS and will be offered with its own plans.</p>
+    </div>
+  </div>
+</div>
+
+<section class="section faq-section">
+  <div class="section-header">
+    <span class="section-eyebrow">Compare Plans</span>
+    <h2>Detailed feature breakdown</h2>
+  </div>
+  <div class="notice-card"><div class="notice-card-inner"><div class="notice-icon">i</div><div><strong>Registered users get free credits every day</strong><p>Anonymous visitors can try basic features. When you <a href="./register.html" style="color:var(--accent);font-weight:700;text-decoration:underline">create a free account</a>, you unlock 3 credits per day, cross-device session saving, and the ability to upgrade to Pro or Pro Plus. No credit card required for the Free plan.</p></div></div></div><div class="pricing-compare">
+    <table>
+      <thead><tr><th>Feature</th><th>Free</th><th>Pro</th><th>Pro Plus</th></tr></thead>
+      <tbody>
+        <tr><td>Chrome Extensions</td><td class="check">4</td><td class="check">4</td><td class="check">4</td></tr>
+        <tr><td>Credits</td><td>3 / day</td><td>500 / month</td><td>2,000 / month</td></tr>
+        <tr><td>AI Actions / Day</td><td>3</td><td>100</td><td>500</td></tr>
+        <tr><td>Image Batch Limit</td><td>200</td><td>1,000</td><td>5,000</td></tr>
+        <tr><td>Monitored URLs</td><td>3</td><td>25</td><td>100</td></tr>
+        <tr><td>AI Prompt / Generation</td><td><span style="color:#94a3b8">—</span></td><td class="check">Yes</td><td class="check">Yes</td></tr>
+        <tr><td>Bulk Downloads</td><td><span style="color:#94a3b8">—</span></td><td class="check">Yes</td><td class="check">Yes</td></tr>
+        <tr><td>Report Export</td><td><span style="color:#94a3b8">—</span></td><td class="check">Yes</td><td class="check">Yes</td></tr>
+        <tr><td>Deep Analysis</td><td><span style="color:#94a3b8">—</span></td><td><span style="color:#94a3b8">—</span></td><td class="check">Yes</td></tr>
+        <tr><td>Priority Support</td><td><span style="color:#94a3b8">-</span></td><td><span style="color:#94a3b8">-</span></td><td class="check">Yes</td></tr>
+        <tr><td>V2 AutoPub SaaS</td><td><span style="color:#94a3b8">Separate</span></td><td><span style="color:#94a3b8">Separate</span></td><td><span style="color:#94a3b8">Separate</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+</main>
+<footer class="footer">
+  <div class="footer-inner">
+    <div><div class="footer-brand">AutoPub</div><p class="footer-brand-desc">Browser extensions for growth teams.</p></div>
+    <div><h4>Product</h4><ul class="footer-links"><li><a href="./index.html#features">Extensions</a></li><li><a href="./pricing.html">Pricing</a><a href="./index.html#saas">AutoPub SaaS</a></li><li><a href="./faq.html">FAQ</a><a href="./register.html">Register</a></li></ul></div>
+    <div><h4>Resources</h4><ul class="footer-links"><li><a href="./blog.html">Blog</a></li><li><a href="./support.html">Support</a></li><li><a href="./privacy.html">Privacy</a></li><li><a href="./terms.html">Terms</a></li></ul></div>
+    <div><h4>Company</h4><ul class="footer-links"><li><a href="./saas.html">AutoPub SaaS</a></li><li><a href="./register.html">Register</a><a href="./login.html">Sign In</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">&copy; 2026 AutoPub. All rights reserved.</div>
+</footer>
+<script src="./app.js"></script>
+</body>
+</html>

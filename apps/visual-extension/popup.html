@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=480">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main class="extension-window">
+  <header class="brand-bar">
+    <div class="brand-lockup">
+      <div class="brand-mark">A</div>
+      <div>
+        <strong>AutoPub Visual</strong>
+        <span id="account-status">Guest mode</span>
+      </div>
+    </div>
+    <div class="brand-actions">
+      <span id="user-plan-badge" class="status-pill"></span>
+      <span id="credits-badge" class="status-pill"></span>
+    </div>
+  </header>
+
+  <section class="welcome-panel">
+    <div>
+      <p id="status">Auto scanning...</p>
+      <span id="summary">Open any page and AutoPub will collect images automatically.</span>
+    </div>
+    <button id="manual-refresh" class="secondary-button" type="button">Refresh</button>
+  </section>
+
+  <div data-state="loading" class="state-panel">
+    <div class="spinner"></div>
+    <p>Scanning page images...</p>
+  </div>
+
+  <div data-state="empty" class="state-panel">
+    <p>No images found on this page yet.</p>
+    <small>Refresh the page or open another page. AutoPub will scan again automatically.</small>
+  </div>
+
+  <div data-state="error" class="state-panel">
+    <p id="error-msg"></p>
+    <small id="error-hint">Open a normal webpage or refresh it. AutoPub will retry automatically.</small>
+  </div>
+
+  <div data-state="results" class="active content-state">
+    <section class="visual-flow">
+      <section id="selection-panel" class="selection-panel">
+        <div>
+          <strong id="selection-title">Scan a page to collect images.</strong>
+          <span id="selection-hint">Select one image to reverse a prompt. Select multiple images to download them.</span>
+        </div>
+        <div class="selection-actions">
+          <button id="selection-reverse" class="primary-button" type="button" hidden>Reverse prompt</button>
+          <button id="selection-download" class="primary-button" type="button" hidden>Download selected</button>
+          <button id="selection-generate" class="secondary-button" type="button" hidden>Generate image</button>
+        </div>
+      </section>
+
+      <section id="prompt-workspace" class="prompt-workspace" hidden>
+        <div class="prompt-head">
+          <button id="prompt-back" class="secondary-button compact-button" type="button">Back to images</button>
+          <strong>Prompt</strong>
+        </div>
+        <textarea id="prompt-output" placeholder="Reverse one selected image to create a prompt."></textarea>
+      </section>
+
+      <section class="gallery-shell">
+        <div class="gallery-head">
+          <div>
+            <strong id="gallery-title">Gallery</strong>
+            <span id="gallery-subtitle">No images scanned yet.</span>
+          </div>
+          <span id="selection-count" class="assistive-text">0 selected</span>
+        </div>
+        <div id="items" class="asset-list"></div>
+      </section>
+    </section>
+  </div>
+
+  <footer class="account-bar">
+    <button id="btn-login" class="text-button">Sign In</button>
+    <button id="btn-register" class="text-button">Register</button>
+    <button id="btn-logout" class="text-button" hidden>Sign Out</button>
+  </footer>
+
+  <div id="upgrade-modal" class="modal-overlay" hidden>
+    <div class="modal-card">
+      <h3 id="upgrade-modal-title">Sign in required</h3>
+      <p id="upgrade-modal-msg"></p>
+      <div class="modal-actions">
+        <button id="upgrade-modal-close" class="secondary-button">Later</button>
+        <button id="upgrade-modal-cta" class="primary-button">Continue with Google or Email</button>
+      </div>
+    </div>
+  </div>
+</main>
+<script src="core.js"></script>
+<script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AutoPub Extension Test Page</title>
+    <meta name="description" content="A local test page for validating AutoPub Visual, Video, SEO Audit, and Competitor Monitor Chrome extensions.">
+    <meta property="og:video" content="https://example.com/demo-video.mp4">
+    <link rel="canonical" href="http://localhost:4173/test-page.html">
+    <link rel="stylesheet" href="./styles.css">
+<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+    <style>
+      .test-visual {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='360'%3E%3Crect width='640' height='360' fill='%231c7c6e'/%3E%3Ctext x='40' y='190' font-size='42' fill='white' font-family='Arial'%3EBackground Asset%3C/text%3E%3C/svg%3E");
+        background-size: cover;
+        min-height: 220px;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="./index.html">AutoPub</a>
+      <nav class="nav"><a href="./pricing.html">Pricing</a><a href="./saas.html">Waitlist</a></nav>
+    </header>
+    <main class="section">
+      <h1>AutoPub Extension Test Page</h1>
+      <p>This page is designed for local extension validation. It contains visible images, a CSS background image, video metadata, SEO fields, pricing text, and CTA buttons.</p>
+      <div class="grid">
+        <article class="card">
+          <h3>Visual Assets</h3>
+          <img alt="AutoPub sample product" width="240" height="140" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='280'%3E%3Crect width='480' height='280' fill='%23335c99'/%3E%3Ccircle cx='130' cy='135' r='70' fill='%23ffffff' opacity='.88'/%3E%3Ctext x='220' y='145' font-size='36' fill='white' font-family='Arial'%3EImage Asset%3C/text%3E%3C/svg%3E">
+          <div class="test-visual"></div>
+        </article>
+        <article class="card">
+          <h3>Video Creative</h3>
+          <p>Manual URL for testing: https://example.com/demo-video.mp4</p>
+          <video controls width="240" poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='280'%3E%3Crect width='480' height='280' fill='%23b24a3b'/%3E%3Ctext x='120' y='150' font-size='42' fill='white' font-family='Arial'%3EVideo Poster%3C/text%3E%3C/svg%3E"></video>
+        </article>
+        <article class="card">
+          <h3>Pricing Signal</h3>
+          <p>Pro plan starts at $19 / mo with a free trial for qualified teams.</p>
+          <a class="button" href="./pricing.html">Start free trial</a>
+        </article>
+        <article class="card">
+          <h3>CTA Signal</h3>
+          <p>Use this card to test competitor snapshot extraction for CTA and copy changes.</p>
+          <button class="button" type="button">Book demo</button>
+        </article>
+      </div>
+    </main>
+  </body>
+</html>
+

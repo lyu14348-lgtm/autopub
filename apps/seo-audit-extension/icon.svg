@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-label="AutoPub SEO Audit logo">
+  <defs>
+    <linearGradient id="bg" x1="18" y1="110" x2="110" y2="18" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ca8a04"/>
+      <stop offset=".55" stop-color="#22c55e"/>
+      <stop offset="1" stop-color="#bef264"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#0f172a" flood-opacity=".22"/>
+    </filter>
+  </defs>
+  <rect x="10" y="10" width="108" height="108" rx="24" fill="#0f172a" filter="url(#shadow)"/>
+  <circle cx="57" cy="56" r="27" fill="none" stroke="url(#bg)" stroke-width="10"/>
+  <path d="M77 77 96 96" stroke="#ecfccb" stroke-width="10" stroke-linecap="round"/>
+  <path d="M39 62 51 50l12 9 18-22" fill="none" stroke="#fefce8" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M83 37h13v13" fill="none" stroke="#bef264" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

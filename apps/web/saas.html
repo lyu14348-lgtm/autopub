@@ -1,0 +1,110 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AutoPub SaaS - Waitlist</title>
+<link rel="stylesheet" href="./styles.css">
+<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<header class="nav">
+  <a href="./index.html" class="nav-brand">
+    <img src="./assets/autopub-logo-mark.svg" alt="" class="nav-logo"><span>AutoPub</span>
+  </a>
+  <nav class="nav-links">
+    <a href="./index.html#features">Extensions</a>
+    <a href="./index.html#pricing">Pricing</a>
+    <a href="./faq.html">FAQ</a>
+    <a href="./blog.html">Blog</a>
+  </nav>
+  <a href="./login.html" class="nav-signin">Sign In</a>
+</header>
+<main>
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-hero-copy">
+      <span class="section-eyebrow">V2 Waitlist</span>
+      <h1>Auto-publishing software for websites that need more customers.</h1>
+      <p>AutoPub SaaS is the planned V2 platform. It will understand your website, plan useful articles, write SEO-friendly content, create matching images, publish approved posts, and keep improving pages over time.</p>
+      <div class="page-hero-actions">
+        <a href="#waitlist" class="btn-primary btn-lg">Join Waitlist</a>
+        <a href="./pricing.html" class="btn-secondary btn-lg">View Extension Pricing</a>
+      </div>
+    </div>
+    <div class="page-hero-panel">
+      <h3>Current stage</h3>
+      <ul class="signal-list">
+        <li><span>V1 Chrome extensions</span><strong>Active</strong></li>
+        <li><span>SaaS demand validation</span><strong>Open</strong></li>
+        <li><span>Private beta estimate</span><strong>6-12 weeks</strong></li>
+        <li><span>Pricing relationship</span><strong>Separate from Pro Plus</strong></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section saas-section">
+  <div class="section-header">
+    <span class="section-eyebrow">What It Will Do</span>
+    <h2>From website scan to published content</h2>
+    <p>The SaaS is not just an article writer. It is planned as a full content operations loop for small teams that need more qualified traffic without running a large marketing department.</p>
+  </div>
+  <div class="info-grid">
+    <div class="info-card dark">
+      <h3>Auto Plan</h3>
+      <p>Analyze your public pages, products, audience, customer questions, and competitor content gaps. Turn those signals into a prioritized editorial calendar.</p>
+    </div>
+    <div class="info-card dark">
+      <h3>Auto Create</h3>
+      <p>Draft articles with search intent, clear headings, internal links, structured answers, and matching visuals for both search engines and AI answer engines.</p>
+    </div>
+    <div class="info-card dark">
+      <h3>Auto Publish &amp; Optimize</h3>
+      <p>Publish approved articles, monitor performance, refresh old content, improve internal links, and keep useful pages from decaying after launch.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section cta-section" id="waitlist">
+  <div class="section-header">
+    <span class="section-eyebrow">Early Access</span>
+    <h2>Reserve a beta spot</h2>
+    <p>No charge today. We will invite waitlist users when the SaaS beta is ready and will keep extension plans separate from SaaS plans.</p>
+  </div>
+  <form class="cta-form" style="margin-top:40px" onsubmit="autopubWaitlist(event)">
+    <div class="cta-form-inner">
+      <input type="email" name="email" placeholder="you@company.com" required>
+      <input type="hidden" name="source" value="saas-waitlist">
+      <button class="btn-primary" type="submit">Join Waitlist</button>
+    </div>
+    <p class="cta-status"></p>
+  </form>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <span class="section-eyebrow">Timeline</span>
+    <h2>Where we are and where we are going</h2>
+    <p>The full SaaS is not part of V1. We are using extension usage, paid conversion, and waitlist demand to choose the right automation depth.</p>
+  </div>
+  <div class="steps-grid">
+    <div class="step-card"><div class="step-number">1</div><h3>Now</h3><p>Four Chrome extensions live. Validating demand, usage patterns, and willingness to pay.</p></div>
+    <div class="step-card"><div class="step-number">2</div><h3>Signal</h3><p>Collecting extension usage data, paid conversions, and waitlist demand to prioritize SaaS features.</p></div>
+    <div class="step-card"><div class="step-number">3</div><h3>Beta</h3><p>Inviting top waitlist users to test automated article planning, writing, image generation, and publishing.</p></div>
+    <div class="step-card"><div class="step-number">4</div><h3>Launch</h3><p>If V1 signals are strong: full SaaS launch with separate pricing, estimated 6-12 weeks from beta start.</p></div>
+  </div>
+</section>
+</main>
+<footer class="footer">
+  <div class="footer-inner">
+    <div><div class="footer-brand">AutoPub</div><p class="footer-brand-desc">Browser extensions for growth teams.</p></div>
+    <div><h4>Product</h4><ul class="footer-links"><li><a href="./index.html#features">Extensions</a></li><li><a href="./index.html#pricing">Pricing</a></li><li><a href="./faq.html">FAQ</a></li></ul></div>
+    <div><h4>Resources</h4><ul class="footer-links"><li><a href="./blog.html">Blog</a></li><li><a href="./support.html">Support</a></li><li><a href="./privacy.html">Privacy</a></li><li><a href="./terms.html">Terms</a></li></ul></div>
+    <div><h4>Company</h4><ul class="footer-links"><li><a href="./saas.html">AutoPub SaaS</a></li><li><a href="./register.html">Register</a><a href="./login.html">Sign In</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">&copy; 2026 AutoPub. All rights reserved.</div>
+</footer>
+<script src="./app.js"></script>
+</body>
+</html>

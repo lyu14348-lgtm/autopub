@@ -1,0 +1,19 @@
+﻿<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="styles.css"></head>
+<body>
+<main>
+  <header><strong>SEO Audit</strong><button data-open-login="seo-audit-extension">Sign In</button><button id="upgrade">Upgrade</button></header>
+  <div data-state="loading" class="state-panel"><div class="spinner"></div><p>Auditing page...</p></div>
+  <div data-state="empty" class="state-panel"><p class="empty-msg">Click Run Audit to analyze this page.</p></div>
+  <div data-state="error" class="state-panel"><p class="error-msg" id="error-msg"></p><button class="btn-retry" id="btn-retry">Retry</button></div>
+  <div data-state="results" class="state-panel active">
+    <p id="status">Ready to audit current page.</p>
+    <div class="actions"><button id="audit">Run Audit</button><button id="ai">AI Fix</button><button id="copy">Copy Report</button></div>
+    <section id="score" class="score">--</section>
+    <ul id="issues"></ul>
+  </div>
+</main>
+<script src="core.js"></script>
+<script src="popup.js"></script>
+</body>
+</html>

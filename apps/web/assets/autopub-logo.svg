@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="252" height="64" viewBox="0 0 252 64" role="img" aria-label="AutoPub">
+  <defs>
+    <linearGradient id="mark" x1="7" y1="57" x2="57" y2="7" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0f766e"/>
+      <stop offset=".48" stop-color="#14b8a6"/>
+      <stop offset="1" stop-color="#67e8f9"/>
+    </linearGradient>
+    <linearGradient id="text" x1="74" y1="47" x2="238" y2="18" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#134e4a"/>
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="56" height="56" rx="14" fill="#0f172a"/>
+  <path d="M16 47 28 17h9l12 30h-9l-2-6H27l-2 6h-9Zm14-14h6l-3-9-3 9Z" fill="url(#mark)"/>
+  <path d="M43 17h8v8" fill="none" stroke="#a7f3d0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M51 17 41 27" fill="none" stroke="#a7f3d0" stroke-width="4" stroke-linecap="round"/>
+  <text x="74" y="42" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="31" font-weight="850" letter-spacing="-.5" fill="url(#text)">AutoPub</text>
+  <path d="M198 18h34" stroke="#14b8a6" stroke-width="3" stroke-linecap="round"/>
+  <path d="M226 18 218 10" stroke="#14b8a6" stroke-width="3" stroke-linecap="round"/>
+  <path d="M226 18 218 26" stroke="#14b8a6" stroke-width="3" stroke-linecap="round"/>
+</svg>

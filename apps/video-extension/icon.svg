@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-label="AutoPub Video Creative Analyzer logo">
+  <defs>
+    <linearGradient id="bg" x1="20" y1="108" x2="108" y2="20" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2563eb"/>
+      <stop offset=".55" stop-color="#38bdf8"/>
+      <stop offset="1" stop-color="#a78bfa"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#0f172a" flood-opacity=".22"/>
+    </filter>
+  </defs>
+  <rect x="10" y="10" width="108" height="108" rx="24" fill="#0f172a" filter="url(#shadow)"/>
+  <rect x="25" y="32" width="78" height="54" rx="12" fill="url(#bg)"/>
+  <path d="M58 48v22l19-11-19-11Z" fill="#fff"/>
+  <path d="M34 96h60" stroke="#60a5fa" stroke-width="7" stroke-linecap="round"/>
+  <path d="M41 96V84M55 96V76M69 96V86M83 96V70" stroke="#bfdbfe" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="94" cy="34" r="5" fill="#ddd6fe"/>
+</svg>

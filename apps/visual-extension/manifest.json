@@ -1,0 +1,55 @@
+﻿{
+    "manifest_version":  3,
+    "name":  "AutoPub Visual Saver \u0026 AI Analyzer",
+    "version":  "0.1.17",
+    "description":  "Scan page images, download assets, and run credits-gated AI visual analysis.",
+    "permissions":  [
+                        "activeTab",
+                        "scripting",
+                        "storage",
+                        "downloads",
+                        "tabs",
+                        "sidePanel"
+                    ],
+    "host_permissions":  [
+                             "\u003call_urls\u003e"
+                         ],
+    "action":  {
+                   "default_title":  "Open AutoPub Visual",
+                   "default_icon":  {
+                                        "16":  "icon16.png",
+                                        "48":  "icon48.png",
+                                        "128":  "icon128.png"
+                                    }
+               },
+    "side_panel":  {
+                       "default_path":  "popup.html"
+                   },
+    "background":  {
+                       "service_worker":  "background.js"
+                   },
+    "content_scripts":  [
+                            {
+                                "matches":  [
+                                                "\u003call_urls\u003e"
+                                            ],
+                                "js":  [
+                                           "content.js"
+                                       ],
+                                "run_at":  "document_idle"
+                            }
+                        ],
+    "icons":  {
+                  "16":  "icon16.png",
+                  "48":  "icon48.png",
+                  "128":  "icon128.png"
+              },
+    "externally_connectable":  {
+                                   "matches":  [
+                                                   "*://localhost:*/*",
+                                                   "*://*.vercel.app/*",
+                                                   "*://autopub.app/*",
+                                                   "*://*.autopub.app/*"
+                                               ]
+                               }
+}
