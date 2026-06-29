@@ -51,7 +51,7 @@
 
     <div style="margin-top:24px;padding:16px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-lg)">
       <p style="font-size:13px;color:var(--text-secondary);margin:0;line-height:1.6">
-        <strong>Local development mode:</strong> Authentication uses mock sessions. In production, sign-in is handled by Supabase Auth with email/password and Google OAuth. Extension login is bridged through a secure code-exchange flow.
+        <strong>Production mode:</strong> Sign in with email/password or use Google OAuth. Your session is securely managed by Supabase Auth.
       </p>
     </div>
   </div>
@@ -62,12 +62,12 @@
 <script>
 function handleLogin(event) {
   event.preventDefault();
-  const email = document.getElementById("login-email").value.trim();
-  const password = document.getElementById("login-password").value;
+  var email = document.getElementById("login-email").value.trim();
+  var password = document.getElementById("login-password").value;
   fetch("/api/auth/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, password })
+    body: JSON.stringify({ email: email, password: password })
   })
     .then(function(response) { return response.json().then(function(data) { return { ok: response.ok, data: data }; }); })
     .then(function(result) {
@@ -76,20 +76,49 @@ function handleLogin(event) {
       localStorage.setItem("autopub_user", JSON.stringify(result.data.user || {}));
       localStorage.setItem("autopub_origin", "autopub-web");
       window.dispatchEvent(new Event("autopub-session-updated"));
+      try {
+        chrome.runtime.sendMessage("EXTENSION_ID_PLACEHOLDER", {
+          type: "AUTOPUB_SESSION_SYNC",
+          session: { token: result.data.token, user: result.data.user, source: "web", synced_at: new Date().toISOString() },
+          appBaseUrl: location.origin
+        });
+      } catch (_) {}
       window.location.href = "./pricing.html";
-    // Push session to Visual Saver extension in real-time
-    try {
-      var extId = "EXTENSION_ID_PLACEHOLDER";
-      chrome.runtime.sendMessage(extId, {
-        type: "AUTOPUB_SESSION_SYNC",
-        session: { token: result.data.token, user: result.data.user, source: "web", synced_at: new Date().toISOString() },
-        appBaseUrl: location.origin
-      }, function () { /* noop */ });
-    } catch (_) { /* extension not installed or not connectable */ }
     })
     .catch(function(error) { alert(error.message); });
 }
+
+(function(){
+  var u = location.hash.slice(1);
+  if (u) {
+    var p = new URLSearchParams(u);
+    var t = p.get("access_token");
+    if (t) {
+      localStorage.setItem("autopub_token", t);
+      localStorage.setItem("autopub_origin", "autopub-web");
+      fetch("https://sokbfhxlwrxiorgepflu.supabase.co/auth/v1/user", {
+        headers: {
+          "apikey": "sb_publishable_If6Yj7WJctjRz_0bhQuTfA_gRyRJlIo",
+          "Authorization": "Bearer " + t
+        }
+      })
+        .then(function(r) { return r.json(); })
+        .then(function(ud) {
+          localStorage.setItem("autopub_user", JSON.stringify(ud));
+          window.dispatchEvent(new Event("autopub-session-updated"));
+          window.location.href = "./pricing.html";
+        })
+        .catch(function() { window.location.href = "./pricing.html"; });
+    }
+  }
+})();
 </script>
+
+<script>
+(function(){var u=location.hash.slice(1);if(u){var p=new URLSearchParams(u);var t=p.get("access_token");var r=p.get("refresh_token");if(t){localStorage.setItem("autopub_token",t);if(r)localStorage.setItem("autopub_refresh_token",r);localStorage.setItem("autopub_origin","autopub-web");fetch("https://sokbfhxlwrxiorgepflu.supabase.co/auth/v1/user",{headers:{"apikey":"sb_publishable_If6Yj7WJctjRz_0bhQuTfA_gRyRJlIo","Authorization":"Bearer "+t}}).then(function(x){return x.json()}).then(function(ud){localStorage.setItem("autopub_user",JSON.stringify(ud));window.dispatchEvent(new Event("autopub-session-updated"));window.location.href="./pricing.html"}).catch(function(){window.location.href="./pricing.html"})}};
+document.getElementById("btn-google-login").addEventListener("click",function(){window.location.href="https://sokbfhxlwrxiorgepflu.supabase.co/auth/v1/authorize?provider=google&redirect_to=https://autopub.cn/login.html"})})();
+</script>
+
 </body>
 </html>
 
