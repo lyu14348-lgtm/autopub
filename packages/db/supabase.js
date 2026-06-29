@@ -1,4 +1,4 @@
-﻿import { requireServerEnv } from "../shared/config.js";
+import { requireServerEnv } from "../shared/config.js";
 
 export function isMockMode() {
   return process.env.MOCK_MODE === "true";
