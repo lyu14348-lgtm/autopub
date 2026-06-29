@@ -1,11 +1,4 @@
 {
-  "buildCommand": "node scripts/build-all.mjs",
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/dist/web/$1" }
-  ],
-  "functions": {
-    "api/**/*.js": {
-      "includeFiles": "packages/**"
-    }
-  }
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist/web"
 }
