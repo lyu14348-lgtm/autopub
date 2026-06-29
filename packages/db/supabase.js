@@ -1,4 +1,4 @@
-import { requireServerEnv } from "../shared/config.js";
+﻿import { requireServerEnv } from "../shared/config.js";
 
 export function isMockMode() {
   return process.env.MOCK_MODE === "true";
@@ -78,9 +78,10 @@ export async function signUpWithPassword({ email, password, name }) {
     password,
     data: { full_name: name || "" }
   });
-  if (data.user?.id) {
+  const userId = data.user?.id || data.id;
+  if (userId) {
     await upsertProfile({
-      user_id: data.user.id,
+      user_id: userId,
       email,
       plan: "free",
       credits_balance: 3,
