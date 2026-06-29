@@ -1,4 +1,4 @@
-﻿import assert from "node:assert/strict";
+import assert from "node:assert/strict";
 import crypto from "node:crypto";
 import { canSpendCredits, getDailyCredits, getTrialCredits, grantDailyCredits, grantPlanCredits, spendCredits } from "../packages/credits/credits.js";
 import { createCheckoutSession, normalizeCreemEvent, verifyCreemSignature } from "../packages/billing/creem.js";

@@ -1,17 +1,11 @@
 {
   "buildCommand": "node scripts/build-all.mjs",
-  "outputDirectory": "dist/web",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/dist/web/$1" }
+  ],
   "functions": {
-    "api/auth/login.js": { "includeFiles": "packages/**" },
-    "api/auth/register.js": { "includeFiles": "packages/**" },
-    "api/auth/me.js": { "includeFiles": "packages/**" },
-    "api/auth/anonymous.js": { "includeFiles": "packages/**" },
-    "api/auth/logout.js": { "includeFiles": "packages/**" },
-    "api/auth/exchange-extension-code.js": { "includeFiles": "packages/**" },
-    "api/entitlements.js": { "includeFiles": "packages/**" },
-    "api/waitlist.js": { "includeFiles": "packages/**" },
-    "api/billing/create-checkout.js": { "includeFiles": "packages/**" },
-    "api/creem/webhook.js": { "includeFiles": "packages/**" },
-    "api/ai/run-task.js": { "includeFiles": "packages/**" }
+    "api/**/*.js": {
+      "includeFiles": "packages/**"
+    }
   }
 }

@@ -1,4 +1,4 @@
-﻿import fs from "node:fs";
+import fs from "node:fs";
 import path from "node:path";
 import { EXTENSIONS } from "../packages/shared/config.js";
 import { loadLocalEnv } from "./load-env.mjs";
