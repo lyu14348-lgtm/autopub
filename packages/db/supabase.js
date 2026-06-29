@@ -29,7 +29,8 @@ export async function supabaseRest(path, { method = "GET", body, prefer } = {}) 
   if (!response.ok) {
     throw new Error(data?.message || data?.error || `Supabase REST request failed: ${response.status}`);
   }
-  return data;`r`n}
+  return data;
+}
 
 export async function supabaseRpc(functionName, body) {
   const { url, serviceRoleKey } = getSupabaseConfig();
@@ -47,7 +48,8 @@ export async function supabaseRpc(functionName, body) {
   if (!response.ok) {
     throw new Error(data?.message || data?.error || `Supabase RPC request failed: ${response.status}`);
   }
-  return data;`r`n}
+  return data;
+}
 
 async function supabaseAuth(path, body) {
   const { url, anonKey } = getSupabaseConfig();
@@ -63,7 +65,8 @@ async function supabaseAuth(path, body) {
   if (!response.ok) {
     throw new Error(data?.msg || data?.message || data?.error_description || `Supabase Auth failed: ${response.status}`);
   }
-  return data;`r`n}
+  return data;
+}
 
 export async function signInWithPassword({ email, password }) {
   return supabaseAuth("token?grant_type=password", { email, password });
@@ -86,7 +89,8 @@ export async function signUpWithPassword({ email, password, name }) {
       daily_credits_refreshed_on: new Date().toISOString().slice(0, 10)
     });
   }
-  return { user: data.user || data, session: data.session || null };`r`n}
+  return { user: data.user || data, session: data.session || null };
+}
 
 export async function getSupabaseAuthUser(token) {
   if (!token) throw new Error("Missing bearer token.");
@@ -101,7 +105,8 @@ export async function getSupabaseAuthUser(token) {
   if (!response.ok) {
     throw new Error(data?.msg || data?.message || "Invalid Supabase session.");
   }
-  return data;`r`n}
+  return data;
+}
 
 export async function getProfileByUserId(userId) {
   const rows = await supabaseRest(`profiles?user_id=eq.${encodeURIComponent(userId)}&select=*`);
