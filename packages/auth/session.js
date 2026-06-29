@@ -1,4 +1,4 @@
-﻿import crypto from "node:crypto";
+import crypto from "node:crypto";
 import { PLAN_LIMITS, requireServerEnv } from "../shared/config.js";
 
 function base64Url(input) {

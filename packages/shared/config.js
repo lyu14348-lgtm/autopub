@@ -1,4 +1,4 @@
-﻿export const PLAN_LIMITS = {
+export const PLAN_LIMITS = {
   anonymous: {
     credits: 3,
     dailyCredits: 0,

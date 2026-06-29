@@ -1,4 +1,4 @@
-﻿(function initAutoPubExtensionCore() {
+(function initAutoPubExtensionCore() {
   const APP_BASE_URL = "__AUTOPUB_APP_BASE_URL__";
 
   /* --- DOM helpers --- */

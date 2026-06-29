@@ -1,4 +1,4 @@
-﻿import { PLAN_LIMITS } from "../shared/config.js";
+import { PLAN_LIMITS } from "../shared/config.js";
 
 export function getInitialCredits(plan) {
   const limits = PLAN_LIMITS[plan] || PLAN_LIMITS.free;
