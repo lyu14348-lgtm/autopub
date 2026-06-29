@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="./styles.css">
 <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
 </head>
-<body>
+<body data-auth-page="login">
 <header class="nav">
   <a href="./index.html" class="nav-brand">
     <img src="./assets/autopub-logo-mark.svg" alt="" class="nav-logo"><span>AutoPub</span>
@@ -60,85 +60,8 @@
 <footer class="footer">
   <div class="footer-bottom" style="border-top:none;margin-top:0;text-align:center">&copy; 2026 AutoPub. All rights reserved.</div>
 </footer>
-<script>
-var SUPABASE_URL = "https://sokbfhxlwrxiorgepflu.supabase.co";
-var SUPABASE_ANON_KEY = "sb_publishable_If6Yj7WJctjRz_0bhQuTfA_gRyRJlIo";
-var authStatusEl = document.getElementById("auth-status");
-
-function setAuthStatus(message, type) {
-  authStatusEl.textContent = message || "";
-  authStatusEl.className = "auth-status" + (type ? " " + type : "");
-}
-
-function storeSession(token, refreshToken, user) {
-  localStorage.setItem("autopub_token", token || "");
-  if (refreshToken) localStorage.setItem("autopub_refresh_token", refreshToken);
-  localStorage.setItem("autopub_user", JSON.stringify(user || {}));
-  localStorage.setItem("autopub_origin", "autopub-web");
-  window.dispatchEvent(new Event("autopub-session-updated"));
-}
-
-function goToGoogleOAuth(event) {
-  event.preventDefault();
-  setAuthStatus("Opening Google sign in...", "info");
-  var redirectTo = new URL("./login.html", window.location.href).href;
-  window.location.href = SUPABASE_URL + "/auth/v1/authorize?provider=google&redirect_to=" + encodeURIComponent(redirectTo);
-}
-
-function handleLogin(event) {
-  event.preventDefault();
-  var email = document.getElementById("login-email").value.trim();
-  var password = document.getElementById("login-password").value;
-  setAuthStatus("Signing in...", "info");
-  fetch("/api/auth/login", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email: email, password: password })
-  })
-    .then(function(response) { return response.json().then(function(data) { return { ok: response.ok, data: data }; }); })
-    .then(function(result) {
-      if (!result.ok) throw new Error(result.data.error || "Sign in failed.");
-      storeSession(result.data.token, result.data.refresh_token, result.data.user);
-      try {
-        chrome.runtime.sendMessage("EXTENSION_ID_PLACEHOLDER", {
-          type: "AUTOPUB_SESSION_SYNC",
-          session: { token: result.data.token, user: result.data.user, source: "web", synced_at: new Date().toISOString() },
-          appBaseUrl: location.origin
-        });
-      } catch (_) {}
-      window.location.href = "./pricing.html";
-    })
-    .catch(function(error) { setAuthStatus(error.message, "error"); });
-}
-
-(function(){
-  var u = location.hash.slice(1);
-  if (u) {
-    setAuthStatus("Completing Google sign in...", "info");
-    var p = new URLSearchParams(u);
-    var t = p.get("access_token");
-    var r = p.get("refresh_token");
-    var e = p.get("error_description") || p.get("error");
-    if (e) setAuthStatus(decodeURIComponent(e), "error");
-    if (t) {
-      fetch(SUPABASE_URL + "/auth/v1/user", {
-        headers: {
-          "apikey": SUPABASE_ANON_KEY,
-          "Authorization": "Bearer " + t
-        }
-      })
-        .then(function(r) { return r.json(); })
-        .then(function(ud) {
-          storeSession(t, r, ud);
-          window.location.href = "./pricing.html";
-        })
-        .catch(function(error) { setAuthStatus(error.message || "Google sign in failed.", "error"); });
-    }
-  }
-})();
-
-document.getElementById("btn-google-login").addEventListener("click", goToGoogleOAuth);
-</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="./auth.js"></script>
 
 </body>
 </html>
