@@ -116,7 +116,7 @@ function handleLogin(event) {
 
 <script>
 (function(){var u=location.hash.slice(1);if(u){var p=new URLSearchParams(u);var t=p.get("access_token");var r=p.get("refresh_token");if(t){localStorage.setItem("autopub_token",t);if(r)localStorage.setItem("autopub_refresh_token",r);localStorage.setItem("autopub_origin","autopub-web");fetch("https://sokbfhxlwrxiorgepflu.supabase.co/auth/v1/user",{headers:{"apikey":"sb_publishable_If6Yj7WJctjRz_0bhQuTfA_gRyRJlIo","Authorization":"Bearer "+t}}).then(function(x){return x.json()}).then(function(ud){localStorage.setItem("autopub_user",JSON.stringify(ud));window.dispatchEvent(new Event("autopub-session-updated"));window.location.href="./pricing.html"}).catch(function(){window.location.href="./pricing.html"})}};
-document.getElementById("btn-google-login").addEventListener("click",function(){window.location.href="https://sokbfhxlwrxiorgepflu.supabase.co/auth/v1/authorize?provider=google&redirect_to=https://autopub.cn/login.html"})})();
+document.getElementById("btn-google-login").addEventListener("click",function(){window.location.href="https://sokbfhxlwrxiorgepflu.supabase.co/auth/v1/authorize?provider=google&redirect_to=https%3A%2F%2Fautopub.cn%2Flogin.html"})})();
 </script>
 
 </body>
