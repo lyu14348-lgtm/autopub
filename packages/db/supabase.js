@@ -253,3 +253,4 @@ export async function syncPaymentAndEntitlements(event) {
     credits_balance: event.credits_balance || event.credits_delta || 0
   });
 }
+
