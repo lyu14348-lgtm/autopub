@@ -3,6 +3,14 @@ const SUPABASE_ANON_KEY = "sb_publishable_If6Yj7WJctjRz_0bhQuTfA_gRyRJlIo";
 
 const authStatusEl = document.getElementById("auth-status");
 const authPage = document.body.dataset.authPage || "login";
+const productionOrigin = "https://autopub.cn";
+
+if (location.hostname.endsWith(".vercel.app")) {
+  const productionUrl = new URL(location.pathname + location.search + location.hash, productionOrigin);
+  setAuthStatus("Preview login detected. Redirecting to autopub.cn...", "info");
+  window.location.replace(productionUrl.href);
+}
+
 const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
   auth: {
     detectSessionInUrl: true,
