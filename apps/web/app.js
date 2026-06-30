@@ -14,6 +14,33 @@ function getUserLabel(user) {
   return name || email || "Account";
 }
 
+function getUserAvatar(user) {
+  return user.avatar_url || user.picture || user.user_metadata?.avatar_url || user.user_metadata?.picture || "";
+}
+
+function getUserInitial(label) {
+  return (label || "A").trim().slice(0, 1).toUpperCase();
+}
+
+function renderAccountButton(entry, user, label) {
+  const avatar = getUserAvatar(user);
+  const initial = getUserInitial(label);
+  entry.innerHTML = "";
+  const avatarEl = document.createElement(avatar ? "img" : "span");
+  avatarEl.className = "nav-account-avatar";
+  if (avatar) {
+    avatarEl.src = avatar;
+    avatarEl.alt = "";
+    avatarEl.referrerPolicy = "no-referrer";
+  } else {
+    avatarEl.textContent = initial;
+  }
+  const nameEl = document.createElement("span");
+  nameEl.className = "nav-account-name";
+  nameEl.textContent = label;
+  entry.append(avatarEl, nameEl);
+}
+
 function clearWebSession() {
   localStorage.removeItem("autopub_token");
   localStorage.removeItem("autopub_refresh_token");
@@ -26,17 +53,19 @@ function renderAuthState() {
   const token = localStorage.getItem("autopub_token");
   const user = getStoredUser();
   const label = getUserLabel(user);
-  document.querySelectorAll(".nav-signin").forEach((entry) => {
+  document.querySelectorAll(".nav-account-slot .nav-signin").forEach((entry) => {
     if (!token) {
       entry.textContent = entry.dataset.signedOutLabel || "Sign In";
       entry.href = entry.dataset.signedOutHref || "./login.html";
       entry.classList.remove("is-signed-in");
+      entry.removeAttribute("title");
       return;
     }
-    entry.textContent = label;
+    renderAccountButton(entry, user, label);
     entry.href = "./pricing.html";
     entry.classList.add("is-signed-in");
     entry.title = user.email || label;
+    entry.setAttribute("aria-label", "Signed in as " + label);
   });
   document.querySelectorAll("[data-auth-required-label]").forEach((entry) => {
     if (token) entry.textContent = entry.dataset.authRequiredLabel;
