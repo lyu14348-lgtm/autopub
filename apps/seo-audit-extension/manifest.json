@@ -37,5 +37,15 @@
                   "16":  "icon16.png",
                   "48":  "icon48.png",
                   "128":  "icon128.png"
-              }
+              },
+    "externally_connectable":  {
+                                   "matches":  [
+                                                   "*://localhost:*/*",
+                                                   "*://*.vercel.app/*",
+                                                   "*://autopub.cn/*",
+                                                   "*://*.autopub.cn/*",
+                                                   "*://autopub.app/*",
+                                                   "*://*.autopub.app/*"
+                                               ]
+                               }
 }

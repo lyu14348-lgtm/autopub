@@ -32,21 +32,10 @@ function storeSession(token, refreshToken, user) {
   window.dispatchEvent(new Event("autopub-session-updated"));
 }
 
-function syncExtensionSession(token, user) {
-  try {
-    chrome.runtime.sendMessage("EXTENSION_ID_PLACEHOLDER", {
-      type: "AUTOPUB_SESSION_SYNC",
-      session: { token, user, source: "web", synced_at: new Date().toISOString() },
-      appBaseUrl: location.origin
-    });
-  } catch (_) {}
-}
-
 function completeWebSession(session) {
   if (!session || !session.access_token) return false;
   const user = session.user || {};
   storeSession(session.access_token, session.refresh_token, user);
-  syncExtensionSession(session.access_token, user);
   window.location.href = "./pricing.html";
   return true;
 }
@@ -100,7 +89,6 @@ async function handleLogin(event) {
     const data = await response.json();
     if (!response.ok) throw new Error(data.error || "Sign in failed.");
     storeSession(data.token, data.refresh_token, data.user);
-    syncExtensionSession(data.token, data.user);
     window.location.href = "./pricing.html";
   } catch (error) {
     setAuthStatus(error.message, "error");
@@ -132,7 +120,6 @@ async function handleRegister(event) {
       window.location.href = "./login.html";
       return;
     }
-    syncExtensionSession(data.token, data.user);
     window.location.href = "./pricing.html";
   } catch (error) {
     setAuthStatus(error.message, "error");

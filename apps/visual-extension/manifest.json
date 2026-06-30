@@ -1,4 +1,4 @@
-﻿{
+{
     "manifest_version":  3,
     "name":  "AutoPub Visual Saver \u0026 AI Analyzer",
     "version":  "0.1.17",
@@ -48,6 +48,8 @@
                                    "matches":  [
                                                    "*://localhost:*/*",
                                                    "*://*.vercel.app/*",
+                                                   "*://autopub.cn/*",
+                                                   "*://*.autopub.cn/*",
                                                    "*://autopub.app/*",
                                                    "*://*.autopub.app/*"
                                                ]
