@@ -1,5 +1,54 @@
 const apiBase = "";
 
+function getStoredUser() {
+  try {
+    return JSON.parse(localStorage.getItem("autopub_user") || "{}");
+  } catch (_) {
+    return {};
+  }
+}
+
+function getUserLabel(user) {
+  const email = user.email || user.user_metadata?.email || "";
+  const name = user.name || user.full_name || user.user_metadata?.full_name || user.user_metadata?.name || "";
+  return name || email || "Account";
+}
+
+function clearWebSession() {
+  localStorage.removeItem("autopub_token");
+  localStorage.removeItem("autopub_refresh_token");
+  localStorage.removeItem("autopub_user");
+  localStorage.removeItem("autopub_origin");
+  window.dispatchEvent(new Event("autopub-session-updated"));
+}
+
+function renderAuthState() {
+  const token = localStorage.getItem("autopub_token");
+  const user = getStoredUser();
+  const label = getUserLabel(user);
+  document.querySelectorAll(".nav-signin").forEach((entry) => {
+    if (!token) {
+      entry.textContent = entry.dataset.signedOutLabel || "Sign In";
+      entry.href = entry.dataset.signedOutHref || "./login.html";
+      entry.classList.remove("is-signed-in");
+      return;
+    }
+    entry.textContent = label;
+    entry.href = "./pricing.html";
+    entry.classList.add("is-signed-in");
+    entry.title = user.email || label;
+  });
+  document.querySelectorAll("[data-auth-required-label]").forEach((entry) => {
+    if (token) entry.textContent = entry.dataset.authRequiredLabel;
+  });
+  document.querySelectorAll("[data-auth-hidden]").forEach((entry) => {
+    entry.hidden = Boolean(token);
+  });
+  document.querySelectorAll("[data-auth-visible]").forEach((entry) => {
+    entry.hidden = !token;
+  });
+}
+
 function getAuthHeaders() {
   const headers = { "Content-Type": "application/json" };
   const token = localStorage.getItem("autopub_token");
@@ -72,3 +121,12 @@ window.autopubStartCheckout = async function autopubStartCheckout(plan) {
     buttons.forEach((button) => { button.disabled = false; });
   }
 };
+
+window.autopubLogout = function autopubLogout(event) {
+  if (event) event.preventDefault();
+  clearWebSession();
+  window.location.href = "./index.html";
+};
+
+renderAuthState();
+window.addEventListener("autopub-session-updated", renderAuthState);

@@ -245,6 +245,37 @@ body {
   box-shadow: 0 8px 22px rgba(15,23,42,0.06);
 }
 
+.nav-signin.is-signed-in {
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #065f46;
+  border-color: rgba(20,184,166,0.28);
+  background: linear-gradient(135deg, rgba(240,253,250,0.96), rgba(236,253,245,0.92));
+}
+
+.nav-logout {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 8px 14px;
+  border: 1px solid rgba(15,23,42,0.1);
+  border-radius: 8px;
+  background: rgba(255,255,255,0.7);
+  color: #475569;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 22px rgba(15,23,42,0.05);
+}
+
+.nav-logout:hover {
+  color: #0f172a;
+  background: #fff;
+}
+
 .hero {
   position: relative;
   min-height: calc(100vh - 66px);
