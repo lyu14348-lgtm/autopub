@@ -41,6 +41,9 @@ function renderAuthState() {
   document.querySelectorAll("[data-auth-required-label]").forEach((entry) => {
     if (token) entry.textContent = entry.dataset.authRequiredLabel;
   });
+  document.querySelectorAll("[data-auth-required-href]").forEach((entry) => {
+    if (token) entry.href = entry.dataset.authRequiredHref;
+  });
   document.querySelectorAll("[data-auth-hidden]").forEach((entry) => {
     entry.hidden = Boolean(token);
   });
