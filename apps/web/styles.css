@@ -340,8 +340,9 @@ body {
 .hero-inner {
   position: relative;
   z-index: 1;
-  grid-template-columns: minmax(0, 0.92fr) minmax(420px, 1.08fr);
-  gap: 54px;
+  grid-template-columns: minmax(680px, 1.18fr) minmax(420px, 0.82fr);
+  gap: 56px;
+  max-width: 1480px;
 }
 
 .hero-text .badge {
@@ -353,21 +354,37 @@ body {
 }
 
 .hero-text h1 {
-  max-width: 720px;
+  max-width: 960px;
   color: #f8fafc;
-  font-size: clamp(42px, 5.3vw, 76px);
-  letter-spacing: 0;
+  font-size: clamp(58px, 5.2vw, 92px);
+  letter-spacing: -0.04em;
+  line-height: 0.94;
   text-wrap: balance;
 }
 
-.hero-text p {
+.hero-text h1 span {
+  display: block;
+}
+
+.hero-copy-row {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  gap: 22px;
+  max-width: 900px;
+  margin-top: 26px;
+}
+
+.hero-text p,
+.hero-copy-row p {
   color: #c6d3df;
-  max-width: 620px;
-  font-size: 19px;
+  max-width: none;
+  font-size: 17px;
+  line-height: 1.62;
+  margin: 0;
 }
 
 .hero-actions {
-  margin-top: 6px;
+  margin-top: 28px;
 }
 
 .hero .btn-primary {
@@ -665,6 +682,17 @@ body {
     grid-template-columns: 1fr;
   }
 
+  .hero-text h1 {
+    max-width: 860px;
+    font-size: clamp(46px, 9vw, 72px);
+  }
+
+  .hero-copy-row {
+    grid-template-columns: 1fr;
+    max-width: 720px;
+    gap: 12px;
+  }
+
   .console-body {
     grid-template-columns: 1fr;
   }
@@ -680,6 +708,15 @@ body {
   .hero {
     min-height: auto;
     padding: 58px 0 70px;
+  }
+
+  .hero-text h1 {
+    font-size: clamp(38px, 13vw, 54px);
+    line-height: 0.98;
+  }
+
+  .hero-copy-row p {
+    font-size: 16px;
   }
 
   .hero-proof,
